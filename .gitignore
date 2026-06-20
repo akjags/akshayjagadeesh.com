@@ -10,6 +10,9 @@ public/*
 public/images/*
 !public/images/akshay-headshot.jpg
 !public/images/lemon-herb-rice.png
+!public/images/recipes/
+public/images/recipes/*.png
+!public/images/recipes/*.jpg
 .Rproj.user
 
 # Next.js

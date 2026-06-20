@@ -1,3 +1,5 @@
+import { recipes } from "@/lib/recipes";
+
 export type Publication = {
   title: string;
   authors: string;
@@ -28,6 +30,8 @@ export type Recipe = {
   tags: string[];
   ingredients: string[];
   steps: string[];
+  source?: string;
+  synthesizedByGpt55?: boolean;
 };
 
 export type EventPage = {
@@ -159,85 +163,7 @@ export const posts: Post[] = [
   },
 ];
 
-export const recipes: Recipe[] = [
-  {
-    slug: "lemon-herb-rice",
-    title: "Lemon herb rice",
-    dek: "Bright basmati rice with mustard seeds, lemon, urad dal, and fresh herbs.",
-    cuisine: "Indian",
-    time: "25 min",
-    servings: "2",
-    image: "/images/lemon-herb-rice.png",
-    tags: ["vegetarian", "mains", "quick"],
-    ingredients: [
-      "1 cup basmati rice",
-      "1 tbsp olive oil",
-      "1 tsp mustard seeds",
-      "1 tsp urad dal",
-      "1 green chili, slit",
-      "Zest of 1 lemon",
-      "Salt to taste",
-      "Fresh herbs, chopped",
-    ],
-    steps: [
-      "Rinse rice and soak for 15 minutes.",
-      "Heat oil, add mustard seeds and let them splutter.",
-      "Add urad dal and green chili. Saute until dal turns light golden.",
-      "Add rice, salt, and 1 3/4 cups water. Bring to a boil.",
-      "Lower heat, cover, and cook until rice is done.",
-      "Fluff, add lemon zest and herbs. Serve warm.",
-    ],
-  },
-  {
-    slug: "aoys-som-tum-thai",
-    title: "Aoy's Som Tum Thai",
-    dek: "Green papaya salad with garlic, Thai chilis, lime, and roasted peanuts.",
-    cuisine: "Thai",
-    time: "25 min",
-    servings: "3-4",
-    image: "https://images.unsplash.com/photo-1562565652-a0d8f0c59eb4?auto=format&fit=crop&w=1200&q=80",
-    tags: ["vegetarian", "raw", "summer"],
-    ingredients: [
-      "1 medium green papaya, shredded",
-      "3 garlic cloves",
-      "Thai chilis, to taste",
-      "2 tbsp brown sugar",
-      "3 tbsp lime juice",
-      "1 tbsp soy sauce",
-      "Long beans, cherry tomatoes, roasted peanuts",
-    ],
-    steps: [
-      "Shred the papaya into long strands.",
-      "Pound chilis, garlic, sugar, and peanuts in a mortar and pestle.",
-      "Add beans, papaya, and tomato. Pound lightly or toss.",
-      "Season with soy sauce and lime juice.",
-    ],
-  },
-  {
-    slug: "vegan-pozole-rojo",
-    title: "Vegan Pozole Rojo",
-    dek: "A hominy, mushroom, and chile broth stew for a slow winter meal.",
-    cuisine: "Mexican",
-    time: "1.5 hr",
-    servings: "6-8",
-    image: "https://images.unsplash.com/photo-1599974579688-8dbdd335c77f?auto=format&fit=crop&w=1200&q=80",
-    tags: ["vegan", "soup", "winter"],
-    ingredients: [
-      "Hominy, drained and rinsed",
-      "Vegetable broth",
-      "Mushrooms and calabacitas",
-      "Onion and garlic",
-      "Guajillo, ancho, and chiles de arbol",
-      "Oregano, cumin, black pepper",
-    ],
-    steps: [
-      "Simmer hominy with broth, onion, garlic, bay leaves, and spices.",
-      "Soften dried chiles, then blend with roasted onion and garlic.",
-      "Strain the chile sauce and add it to the pot.",
-      "Saute mushrooms and calabacitas, add them back, and simmer until deep and rich.",
-    ],
-  },
-];
+export { recipes };
 
 export const events: EventPage[] = [
   {
