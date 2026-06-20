@@ -16,7 +16,7 @@ const selectedWork = [
     icon: ShieldCheck,
     title: "Beneficial RL",
     body: "Training models for broadly useful behavior that persists under pressure.",
-    meta: "OpenAI Alignment Blog",
+    meta: "OpenAI",
   },
   {
     icon: HeartPulse,
