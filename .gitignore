@@ -7,3 +7,8 @@
 resources/
 public/
 .Rproj.user
+
+# Next.js
+.next/
+node_modules/
+out/
