@@ -5,7 +5,6 @@ import {
   BrainCircuit,
   FileText,
   HeartPulse,
-  MapPin,
   Microscope,
   ShieldCheck,
 } from "lucide-react";
@@ -61,10 +60,6 @@ export default function Home() {
             I&apos;m a Research Scientist at OpenAI working on AI alignment, AI for health and
             medicine, and the science of intelligent systems. Previously, I was a computational
             neuroscientist studying how human and primate brains represent visual objects.
-          </p>
-          <p className="mt-8 inline-flex items-center gap-2 text-sm text-moss">
-            <MapPin size={18} aria-hidden />
-            OpenAI · San Francisco, CA
           </p>
         </div>
       </section>
