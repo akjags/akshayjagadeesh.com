@@ -1,21 +1,5 @@
 import type { Recipe } from "@/lib/content";
 
-const photo = {
-  noodles: "/images/recipes/noodles.jpg",
-  tofuRice: "/images/recipes/tofu-rice.jpg",
-  tacos: "/images/recipes/tacos.jpg",
-  curry: "/images/recipes/indian-curry.jpg",
-  soup: "/images/recipes/stew.jpg",
-  burger: "/images/recipes/burger.jpg",
-  pasta: "/images/recipes/pasta.jpg",
-  friedRice: "/images/recipes/fried-rice.jpg",
-  mushrooms: "/images/recipes/tacos.jpg",
-  stew: "/images/recipes/stew.jpg",
-  salad: "/images/recipes/stew.jpg",
-  bread: "/images/recipes/bread.jpg",
-  thaiCurry: "/images/recipes/thai-curry.jpg",
-};
-
 function slugify(title: string) {
   return title
     .toLowerCase()
@@ -45,7 +29,7 @@ export const recipes: Recipe[] = [
     cuisine: "East Asian",
     time: "30 min",
     servings: "3-4",
-    image: photo.noodles,
+    image: "/images/recipes/peanut-noodles-with-tofu-and-vegetables.jpg",
     tags: ["noodles", "tofu", "weeknight", "vegetarian"],
     ingredients: [
       "Rice noodles or wheat noodles",
@@ -71,7 +55,7 @@ export const recipes: Recipe[] = [
     cuisine: "East Asian",
     time: "25 min",
     servings: "3-4",
-    image: photo.noodles,
+    image: "/images/recipes/chili-noodles-with-tofu-and-vegetables.jpg",
     tags: ["noodles", "tofu", "spicy", "weeknight"],
     ingredients: [
       "Noodles",
@@ -97,7 +81,7 @@ export const recipes: Recipe[] = [
     cuisine: "Sichuan-inspired",
     time: "35 min",
     servings: "4",
-    image: photo.noodles,
+    image: "/images/recipes/dan-dan-noodles-with-impossible-meat.jpg",
     tags: ["noodles", "spicy", "fake meat", "dinner"],
     ingredients: [
       "Noodles",
@@ -123,7 +107,7 @@ export const recipes: Recipe[] = [
     cuisine: "Sichuan-inspired",
     time: "40 min",
     servings: "4",
-    image: photo.tofuRice,
+    image: "/images/recipes/mapo-tofu-and-garlic-eggplant.jpg",
     tags: ["tofu", "spicy", "rice", "vegetarian"],
     source: "Adapted from the Spicy Delicious cookbook.",
     ingredients: [
@@ -151,7 +135,7 @@ export const recipes: Recipe[] = [
     cuisine: "East Asian",
     time: "30 min",
     servings: "4",
-    image: photo.tofuRice,
+    image: "/images/recipes/black-pepper-tofu-and-rice.jpg",
     tags: ["tofu", "rice", "spicy", "cookbook"],
     source: "From the Spicy Delicious cookbook.",
     ingredients: [
@@ -178,7 +162,7 @@ export const recipes: Recipe[] = [
     cuisine: "East Asian",
     time: "35 min",
     servings: "2-3",
-    image: photo.tofuRice,
+    image: "/images/recipes/peanut-tofu-and-rice.jpg",
     tags: ["tofu", "rice", "peanut", "weeknight"],
     source: "Inspired by the Spicy Delicious baked crispy peanut tofu notes.",
     ingredients: [
@@ -204,7 +188,7 @@ export const recipes: Recipe[] = [
     cuisine: "Japanese-inspired",
     time: "40 min",
     servings: "4",
-    image: photo.tofuRice,
+    image: "/images/recipes/sheet-pan-miso-maple-tofu-and-rice.jpg",
     tags: ["sheet pan", "tofu", "rice", "weeknight"],
     ingredients: [
       "Extra-firm tofu",
@@ -230,7 +214,7 @@ export const recipes: Recipe[] = [
     cuisine: "Middle Eastern-inspired",
     time: "40 min",
     servings: "4",
-    image: photo.bread,
+    image: "/images/recipes/sheet-pan-shawarma-and-pita.jpg",
     tags: ["sheet pan", "pita", "weeknight"],
     ingredients: [
       "Cauliflower, chickpeas, onions, peppers, or tofu",
@@ -254,7 +238,7 @@ export const recipes: Recipe[] = [
     cuisine: "Mexican-inspired",
     time: "35 min",
     servings: "3-4",
-    image: photo.tacos,
+    image: "/images/recipes/shredded-king-oyster-mushroom-tacos.jpg",
     tags: ["tacos", "mushrooms", "vegetarian"],
     ingredients: [
       "King oyster mushrooms, shredded with a fork",
@@ -279,7 +263,7 @@ export const recipes: Recipe[] = [
     cuisine: "Mexican-inspired",
     time: "25 min",
     servings: "3-4",
-    image: photo.tacos,
+    image: "/images/recipes/mixed-mushroom-tacos.jpg",
     tags: ["tacos", "mushrooms", "weeknight"],
     ingredients: [
       "Mixed mushrooms, sliced",
@@ -303,7 +287,7 @@ export const recipes: Recipe[] = [
     cuisine: "Mexican-inspired",
     time: "25 min",
     servings: "3-4",
-    image: photo.tacos,
+    image: "/images/recipes/tofu-tacos.jpg",
     tags: ["tacos", "tofu", "weeknight"],
     source: "Inspired by the cookbook's huevos con papas y chorizo tacos.",
     ingredients: [
@@ -328,7 +312,7 @@ export const recipes: Recipe[] = [
     cuisine: "Mexican-inspired",
     time: "30 min",
     servings: "4",
-    image: photo.tacos,
+    image: "/images/recipes/mixed-vegetable-tacos.jpg",
     tags: ["tacos", "vegetables", "weeknight"],
     ingredients: [
       "Peppers, zucchini, mushrooms, onions, or cauliflower",
@@ -351,7 +335,7 @@ export const recipes: Recipe[] = [
     cuisine: "Mexican-inspired",
     time: "20 min",
     servings: "4",
-    image: photo.tacos,
+    image: "/images/recipes/fake-meat-tacos.jpg",
     tags: ["tacos", "fake meat", "weeknight"],
     ingredients: [
       "Impossible meat or other plant-based ground",
@@ -374,7 +358,7 @@ export const recipes: Recipe[] = [
     cuisine: "Indian",
     time: "25 min",
     servings: "2-3",
-    image: photo.curry,
+    image: "/images/recipes/bhindi-masala.jpg",
     tags: ["indian", "vegetables", "cookbook"],
     source: "From the Spicy Delicious cookbook.",
     ingredients: [
@@ -400,7 +384,7 @@ export const recipes: Recipe[] = [
     cuisine: "Indian",
     time: "35 min",
     servings: "4-5",
-    image: photo.curry,
+    image: "/images/recipes/paneer-tikka-masala.jpg",
     tags: ["indian", "paneer", "cookbook"],
     source: "Adapted from the cookbook's mattar paneer tikka masala.",
     ingredients: [
@@ -426,7 +410,7 @@ export const recipes: Recipe[] = [
     cuisine: "American",
     time: "20 min",
     servings: "4",
-    image: photo.burger,
+    image: "/images/recipes/impossible-burgers.jpg",
     tags: ["burgers", "fake meat", "quick"],
     ingredients: [
       "Impossible patties",
@@ -450,7 +434,7 @@ export const recipes: Recipe[] = [
     cuisine: "Indian",
     time: "25 min",
     servings: "4-5",
-    image: photo.soup,
+    image: "/images/recipes/rasam-and-rice.jpg",
     tags: ["indian", "soup", "rice", "cookbook"],
     source: "From the Spicy Delicious cookbook.",
     ingredients: [
@@ -477,7 +461,7 @@ export const recipes: Recipe[] = [
     cuisine: "Indian",
     time: "45 min",
     servings: "4-6",
-    image: photo.soup,
+    image: "/images/recipes/sambar-and-rice.jpg",
     tags: ["indian", "lentils", "rice"],
     ingredients: [
       "Toor dal",
@@ -502,7 +486,7 @@ export const recipes: Recipe[] = [
     cuisine: "Indian",
     time: "25 min",
     servings: "2-3",
-    image: photo.curry,
+    image: "/images/recipes/gobi-sabji.jpg",
     tags: ["indian", "vegetables", "cookbook"],
     source: "Adapted from the cookbook's gobi masala.",
     ingredients: [
@@ -527,7 +511,7 @@ export const recipes: Recipe[] = [
     cuisine: "Indian",
     time: "1 hr",
     servings: "5-6",
-    image: photo.curry,
+    image: "/images/recipes/dal-makhani.jpg",
     tags: ["indian", "lentils", "comfort"],
     ingredients: [
       "Whole urad dal or black lentils",
@@ -552,7 +536,7 @@ export const recipes: Recipe[] = [
     cuisine: "Indian",
     time: "30 min",
     servings: "4",
-    image: photo.friedRice,
+    image: "/images/recipes/vegetable-rice.jpg",
     tags: ["rice", "vegetables", "weeknight"],
     ingredients: [
       "Basmati rice",
@@ -576,7 +560,7 @@ export const recipes: Recipe[] = [
     cuisine: "Thai",
     time: "35 min",
     servings: "4",
-    image: photo.thaiCurry,
+    image: "/images/recipes/thai-curry.jpg",
     tags: ["thai", "curry", "tofu", "cookbook"],
     source: "Adapted from Aoy's Thai green curry and the Thai red curry notes.",
     ingredients: [
@@ -603,7 +587,7 @@ export const recipes: Recipe[] = [
     cuisine: "Thai",
     time: "25 min",
     servings: "3-4",
-    image: photo.tofuRice,
+    image: "/images/recipes/tofu-pad-kra-pow.jpg",
     tags: ["thai", "tofu", "rice", "spicy"],
     ingredients: [
       "Firm tofu, crumbled or cubed",
@@ -628,7 +612,7 @@ export const recipes: Recipe[] = [
     cuisine: "Cajun-inspired",
     time: "45 min",
     servings: "5-6",
-    image: photo.friedRice,
+    image: "/images/recipes/jambalaya.jpg",
     tags: ["rice", "one pot", "fake meat"],
     ingredients: [
       "Rice",
@@ -653,7 +637,7 @@ export const recipes: Recipe[] = [
     cuisine: "West African-inspired",
     time: "40 min",
     servings: "5",
-    image: photo.stew,
+    image: "/images/recipes/peanut-stew.jpg",
     tags: ["stew", "peanut", "cookbook"],
     source: "From the Spicy Delicious cookbook.",
     ingredients: [
@@ -680,7 +664,7 @@ export const recipes: Recipe[] = [
     cuisine: "Mexican",
     time: "45 min",
     servings: "4-6",
-    image: photo.soup,
+    image: "/images/recipes/poblano-soup.jpg",
     tags: ["soup", "mexican", "cookbook"],
     source: "From the Spicy Delicious cookbook.",
     ingredients: [
@@ -707,7 +691,7 @@ export const recipes: Recipe[] = [
     cuisine: "Mexican-inspired",
     time: "30 min",
     servings: "4",
-    image: photo.tacos,
+    image: "/images/recipes/crispy-tacos.jpg",
     tags: ["tacos", "crispy", "weeknight"],
     ingredients: [
       "Corn tortillas",
@@ -730,7 +714,7 @@ export const recipes: Recipe[] = [
     cuisine: "Shortcut",
     time: "15 min",
     servings: "1-2",
-    image: photo.burger,
+    image: "/images/recipes/frozen-chicken-sandwich.jpg",
     tags: ["shortcut", "sandwich", "quick"],
     ingredients: [
       "Frozen vegetarian or chicken-style patty",
@@ -753,7 +737,7 @@ export const recipes: Recipe[] = [
     cuisine: "Shortcut",
     time: "15 min",
     servings: "2",
-    image: photo.bread,
+    image: "/images/recipes/frozen-baos.jpg",
     tags: ["shortcut", "quick"],
     ingredients: [
       "Frozen baos",
@@ -774,7 +758,7 @@ export const recipes: Recipe[] = [
     cuisine: "Italian-inspired",
     time: "30 min",
     servings: "4",
-    image: photo.pasta,
+    image: "/images/recipes/veggie-marinara-pasta.jpg",
     tags: ["pasta", "vegetables", "weeknight"],
     ingredients: [
       "Pasta",
@@ -798,7 +782,7 @@ export const recipes: Recipe[] = [
     cuisine: "California-ish",
     time: "25 min",
     servings: "4",
-    image: photo.pasta,
+    image: "/images/recipes/green-goddess-pasta.jpg",
     tags: ["pasta", "herby", "quick"],
     ingredients: [
       "Pasta",
@@ -821,7 +805,7 @@ export const recipes: Recipe[] = [
     cuisine: "Mexican-inspired",
     time: "50 min",
     servings: "4-6",
-    image: photo.friedRice,
+    image: "/images/recipes/charro-beans-with-mexican-rice-and-quesadilla.jpg",
     tags: ["beans", "rice", "mexican"],
     source: "Mexican rice adapted from the Spicy Delicious cookbook.",
     ingredients: [
@@ -845,7 +829,7 @@ export const recipes: Recipe[] = [
     cuisine: "Korean-inspired",
     time: "25 min",
     servings: "3-4",
-    image: photo.friedRice,
+    image: "/images/recipes/kimchi-and-bulgogi-fried-rice.jpg",
     tags: ["rice", "kimchi", "fake meat", "quick"],
     ingredients: [
       "Day-old rice",
@@ -870,7 +854,7 @@ export const recipes: Recipe[] = [
     cuisine: "Thai",
     time: "25 min",
     servings: "3-4",
-    image: photo.salad,
+    image: "/images/recipes/aoy-s-som-tum-thai.jpg",
     tags: ["thai", "salad", "cookbook"],
     source: "From the Spicy Delicious cookbook.",
     ingredients: [
@@ -895,7 +879,7 @@ export const recipes: Recipe[] = [
     cuisine: "Mexican",
     time: "1.5 hr",
     servings: "6-8",
-    image: photo.soup,
+    image: "/images/recipes/gobi-manchurian.jpg",
     tags: ["mexican", "soup", "cookbook"],
     source: "From the Spicy Delicious cookbook.",
     ingredients: [
@@ -922,7 +906,7 @@ export const recipes: Recipe[] = [
     cuisine: "Indian",
     time: "20 min",
     servings: "3-4",
-    image: photo.curry,
+    image: "/images/recipes/vegan-pozole-rojo.jpg",
     tags: ["snack", "indian", "cookbook"],
     source: "From the Spicy Delicious cookbook.",
     ingredients: [
@@ -948,7 +932,7 @@ export const recipes: Recipe[] = [
     cuisine: "Indo-Chinese",
     time: "30 min",
     servings: "3-4",
-    image: photo.curry,
+    image: "/images/recipes/jollof-rice.jpg",
     tags: ["snack", "cauliflower", "cookbook"],
     source: "From the Spicy Delicious cookbook.",
     ingredients: [
@@ -973,7 +957,7 @@ export const recipes: Recipe[] = [
     cuisine: "Indian",
     time: "35 min",
     servings: "4-5",
-    image: photo.curry,
+    image: "/images/recipes/palak-paneer.jpg",
     tags: ["indian", "paneer", "cookbook"],
     source: "From the Spicy Delicious cookbook.",
     ingredients: [
@@ -998,7 +982,7 @@ export const recipes: Recipe[] = [
     cuisine: "Indian",
     time: "35 min",
     servings: "4-5",
-    image: photo.curry,
+    image: "/images/recipes/baingan-bhartha.jpg",
     tags: ["indian", "eggplant", "cookbook"],
     source: "From the Spicy Delicious cookbook.",
     ingredients: [
@@ -1023,7 +1007,7 @@ export const recipes: Recipe[] = [
     cuisine: "Indian",
     time: "30 min",
     servings: "3-4",
-    image: photo.soup,
+    image: "/images/recipes/dal-tadka.jpg",
     tags: ["indian", "lentils", "cookbook"],
     source: "From the Spicy Delicious cookbook.",
     ingredients: [
@@ -1048,7 +1032,7 @@ export const recipes: Recipe[] = [
     cuisine: "West African",
     time: "1 hr",
     servings: "4",
-    image: photo.friedRice,
+    image: "/images/recipes/onion-and-jalapeno-pakora.jpg",
     tags: ["rice", "west african", "cookbook"],
     source: "From the Spicy Delicious cookbook.",
     ingredients: [
@@ -1074,7 +1058,7 @@ export const recipes: Recipe[] = [
     cuisine: "Baked goods",
     time: "1.5 hr",
     servings: "8",
-    image: photo.bread,
+    image: "/images/recipes/bagels.jpg",
     tags: ["baking", "bread", "cookbook"],
     source: "From the Spicy Delicious cookbook.",
     ingredients: [
