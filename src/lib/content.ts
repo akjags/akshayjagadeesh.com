@@ -50,11 +50,60 @@ export const publications: Publication[] = [
     selected: true,
   },
   {
+    title: "HealthBench Professional: Evaluating Large Language Models on Real Clinician Chats",
+    authors:
+      "Rebecca Soskin Hicks, Mikhail Trofimov, Dominick Lim, Rahul K. Arora, Foivos Tsimpourlas, Preston Bowman, Michael Sharman, Chi Tong, Kavin Karthik, Arnav Dugar, Akshay Jagadeesh, Khaled Saab, Johannes Heidecke, Ashley Alexander, Nate Gross, Karan Singhal",
+    venue: "OpenAI",
+    year: "2026",
+    href: "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf",
+    pdf: "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf",
+    selected: true,
+  },
+  {
+    title:
+      "Monkey See, Model Knew: Large Language Models Accurately Predict Visual Brain Responses in Humans and Non-Human Primates",
+    authors:
+      "Colin Conwell, Emalie McMahon, Akshay Jagadeesh, Kasper Vinken, Saloni Sharma, Jacob S. Prince, George A. Alvarez, Talia Konkle, Margaret Livingstone, Leyla Isik",
+    venue: "bioRxiv",
+    year: "2025",
+    href: "https://www.biorxiv.org/content/10.1101/2025.03.05.641284.abstract",
+    pdf: "https://www.biorxiv.org/content/biorxiv/early/2025/04/09/2025.03.05.641284.full.pdf",
+  },
+  {
+    title:
+      "Contrast Inversion Reveals Hierarchical Asymmetries of Contrast Processing in Biological and Artificial Vision",
+    authors:
+      "Sohrab Najafian, Giordano Ramos-Traslosheros, Akshay Vivek Jagadeesh, Margaret Livingstone",
+    venue: "NeurIPS Symmetry and Geometry Workshop",
+    year: "2025",
+    href: "https://openreview.net/forum?id=CSXVZD7SY4",
+    pdf: "https://openreview.net/pdf?id=CSXVZD7SY4",
+  },
+  {
+    title:
+      "Parametric Control Along the Encoding Axes of IT Neurons Uncovers Hidden Differences in Model-Brain Alignment",
+    authors:
+      "Jacob S. Prince, Binxu Wang, Akshay V. Jagadeesh, Thomas Fel, Emily Lo, George A. Alvarez, Margaret S. Livingstone, Talia Konkle",
+    venue: "CCN",
+    year: "2025",
+    href: "https://2025.ccneuro.org/abstract_pdf/Prince_2025_Parametric_control_along_encoding_axes_IT.pdf",
+    pdf: "https://2025.ccneuro.org/abstract_pdf/Prince_2025_Parametric_control_along_encoding_axes_IT.pdf",
+  },
+  {
+    title: "Face Cells Encode Object Parts More Than Facial Configuration of Illusory Faces",
+    authors: "Saloni Sharma, Kasper Vinken, Akshay V. Jagadeesh, Margaret S. Livingstone",
+    venue: "Nature Communications",
+    year: "2024",
+    href: "https://www.nature.com/articles/s41467-024-54323-w",
+    pdf: "https://www.nature.com/articles/s41467-024-54323-w.pdf",
+  },
+  {
     title: "Assessing equivariance in visual neural representations",
     authors: "Akshay V. Jagadeesh, Will Xiao, Margaret S. Livingstone",
     venue: "CCN",
     year: "2024",
-    href: "https://2024.ccneuro.org/view_paper.php?PaperNum=1236",
+    href: "https://2024.ccneuro.org/pdf/575_Paper_authored_Rotation_Equivariance_in_Primate_IT_Cortex-%283%29.pdf",
+    pdf: "https://2024.ccneuro.org/pdf/575_Paper_authored_Rotation_Equivariance_in_Primate_IT_Cortex-%283%29.pdf",
     selected: true,
   },
   {
@@ -106,50 +155,6 @@ export const posts: Post[] = [
     body: [
       "I wanted this site to feel less like a frozen CV and more like a living notebook: public enough for work and writing, but flexible enough to hold small private tools and family recipes.",
       "The public parts will stay spare and readable. The hidden parts can be more practical: searchable recipes, event pages, forms, and little web games that only need a link.",
-    ],
-  },
-  {
-    slug: "vision-and-models",
-    title: "Vision, models, and useful mismatches",
-    date: "2026-06-19",
-    dek: "A placeholder note on why failures of computer vision models can still teach us something about perception.",
-    tags: ["vision", "models"],
-    body: [
-      "Some of the most interesting comparisons between humans and neural networks come from mismatches rather than agreements.",
-      "When models solve things that humans find hard, or miss things that humans find obvious, those gaps can become experimental tools rather than mere benchmarks.",
-    ],
-  },
-  {
-    slug: "slow-intentional-tools",
-    title: "The case for slow, intentional tools",
-    date: "2026-04-28",
-    dek: "A placeholder note on software that helps people think instead of merely move faster.",
-    tags: ["tools", "design"],
-    body: [
-      "Fast tools are often valuable, but speed is not the same thing as care.",
-      "I am interested in tools that create space for judgment: interfaces that reveal structure, keep context nearby, and make it easier to notice when a decision deserves another minute.",
-    ],
-  },
-  {
-    slug: "complexity-and-humility",
-    title: "Reading list: complexity and humility",
-    date: "2026-04-10",
-    dek: "A small list of things I keep returning to when systems feel too simple in our explanations.",
-    tags: ["reading", "systems"],
-    body: [
-      "The most useful reading lists are not taxonomies; they are little trails through a problem.",
-      "This one is for work that treats complexity as something to understand with patience rather than something to flatten immediately.",
-    ],
-  },
-  {
-    slug: "building-in-public",
-    title: "Notes on building in public",
-    date: "2026-03-22",
-    dek: "A placeholder note on sharing half-finished things without turning everything into performance.",
-    tags: ["notes", "practice"],
-    body: [
-      "Building in public can be generous, but it can also distort the work if the audience becomes the real material.",
-      "The version I like is quieter: publish enough that ideas can be found, keep enough private that they can still change.",
     ],
   },
 ];

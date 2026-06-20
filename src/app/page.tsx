@@ -51,7 +51,7 @@ export default function Home() {
           width={720}
           height={720}
           priority
-          className="aspect-square w-full max-w-[280px] border border-ink/8 object-cover grayscale md:max-w-none"
+          className="aspect-square w-full max-w-[280px] border border-ink/8 object-cover md:max-w-none"
         />
         <div className="flex max-w-3xl flex-col justify-center">
           <h1 className="font-serif text-5xl leading-[1.02] text-ink md:text-6xl">
@@ -59,7 +59,8 @@ export default function Home() {
           </h1>
           <p className="mt-5 max-w-2xl text-xl leading-8 text-ink/86">
             I&apos;m a Research Scientist at OpenAI working on AI alignment, AI for health and
-            medicine, and the science of intelligent systems.
+            medicine, and the science of intelligent systems. Previously, I was a computational
+            neuroscientist studying how human and primate brains represent visual objects.
           </p>
           <p className="mt-8 inline-flex items-center gap-2 text-sm text-moss">
             <MapPin size={18} aria-hidden />
