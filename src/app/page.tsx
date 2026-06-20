@@ -16,13 +16,13 @@ const selectedWork = [
     icon: ShieldCheck,
     title: "Beneficial RL",
     body: "Training models for broadly useful behavior that persists under pressure.",
-    meta: "OpenAI · 2026",
+    meta: "OpenAI Alignment Blog",
   },
   {
     icon: HeartPulse,
     title: "AI for health",
     body: "Exploring how AI can accelerate progress in health, medicine, and scientific discovery.",
-    meta: "OpenAI · ongoing",
+    meta: "OpenAI",
   },
   {
     icon: BrainCircuit,
@@ -34,7 +34,7 @@ const selectedWork = [
     icon: Microscope,
     title: "Vision and models",
     body: "Studying where biological and artificial visual systems align and diverge.",
-    meta: "PNAS · CCN",
+    meta: "Published in PNAS, Nature Communications, NeurIPS workshop, ICLR workshop, CCN",
   },
 ];
 
@@ -95,30 +95,6 @@ export default function Home() {
       <section className="grid gap-0 md:grid-cols-2">
         <div className="border-b border-ink/12 px-5 py-7 md:border-b-0 md:border-r md:px-7">
           <div className="mb-5 flex items-center justify-between gap-4">
-            <h2 className="font-serif text-3xl text-ink">Notes</h2>
-            <Link
-              href="/writing"
-              className="inline-flex items-center gap-2 text-sm text-blue hover:text-ink"
-            >
-              View all
-              <ArrowRight size={16} aria-hidden />
-            </Link>
-          </div>
-          <div className="space-y-4">
-            {selectedPosts.map((post) => (
-              <Link key={post.slug} href={`/writing/${post.slug}`} className="grid grid-cols-[18px_1fr] gap-3">
-                <FileText size={18} className="mt-0.5 text-moss" strokeWidth={1.5} aria-hidden />
-                <span>
-                  <span className="block text-sm leading-5 text-ink">{post.title}</span>
-                  <span className="block text-sm text-ink/52">{post.date}</span>
-                </span>
-              </Link>
-            ))}
-          </div>
-        </div>
-
-        <div className="px-5 py-7 md:px-7">
-          <div className="mb-5 flex items-center justify-between gap-4">
             <h2 className="font-serif text-3xl text-ink">Publications</h2>
             <Link
               href="/publications"
@@ -143,6 +119,30 @@ export default function Home() {
                   </span>
                 </span>
               </a>
+            ))}
+          </div>
+        </div>
+
+        <div className="px-5 py-7 md:px-7">
+          <div className="mb-5 flex items-center justify-between gap-4">
+            <h2 className="font-serif text-3xl text-ink">Notes</h2>
+            <Link
+              href="/writing"
+              className="inline-flex items-center gap-2 text-sm text-blue hover:text-ink"
+            >
+              View all
+              <ArrowRight size={16} aria-hidden />
+            </Link>
+          </div>
+          <div className="space-y-4">
+            {selectedPosts.map((post) => (
+              <Link key={post.slug} href={`/writing/${post.slug}`} className="grid grid-cols-[18px_1fr] gap-3">
+                <FileText size={18} className="mt-0.5 text-moss" strokeWidth={1.5} aria-hidden />
+                <span>
+                  <span className="block text-sm leading-5 text-ink">{post.title}</span>
+                  <span className="block text-sm text-ink/52">{post.date}</span>
+                </span>
+              </Link>
             ))}
           </div>
         </div>
