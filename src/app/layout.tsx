@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Github, Linkedin, Mail } from "lucide-react";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -23,28 +24,28 @@ export const metadata: Metadata = {
 };
 
 const nav = [
-  { href: "/", label: "Home" },
-  { href: "/writing", label: "Writing" },
+  { href: "/writing", label: "Notes" },
   { href: "/publications", label: "Publications" },
-  { href: "/about", label: "About" },
+  { href: "/events/weekend-party", label: "Event" },
 ];
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <div className="min-h-screen">
-          <header className="sticky top-0 z-30 border-b border-ink/10 bg-mist/88 backdrop-blur">
-            <nav className="mx-auto flex max-w-6xl flex-col gap-3 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
-              <Link href="/" className="font-serif text-xl leading-tight text-ink">
+        <div className="min-h-screen px-3 py-3 sm:px-5 sm:py-4">
+          <div className="mx-auto max-w-7xl overflow-hidden rounded-[18px] border border-ink/15 bg-paper/90 shadow-soft backdrop-blur">
+          <header className="border-b border-ink/12">
+            <nav className="flex flex-col gap-3 px-5 py-5 sm:flex-row sm:items-center sm:justify-between md:px-7">
+              <Link href="/" className="font-serif text-2xl leading-tight text-ink">
                 Akshay Jagadeesh
               </Link>
-              <div className="flex flex-wrap items-center gap-1 text-sm text-ink/70">
+              <div className="flex flex-wrap items-center gap-6 text-sm text-ink/78">
                 {nav.map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="rounded-md px-3 py-2 transition hover:bg-ink/5 hover:text-ink focus:outline-none focus:ring-2 focus:ring-blue/40"
+                    className="transition hover:text-moss focus:outline-none focus:ring-2 focus:ring-blue/35"
                   >
                     {item.label}
                   </Link>
@@ -53,22 +54,26 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </nav>
           </header>
           {children}
-          <footer className="border-t border-ink/10 bg-paper">
-            <div className="mx-auto flex max-w-6xl flex-col gap-4 px-5 py-10 text-sm text-ink/65 md:flex-row md:items-center md:justify-between">
-              <p>© {new Date().getFullYear()} Akshay Jagadeesh</p>
-              <div className="flex gap-4">
-                <a href="mailto:akjags@gmail.com" className="hover:text-ink">
+          <footer className="border-t border-ink/12">
+            <div className="flex flex-col gap-4 px-5 py-8 text-sm text-ink/68 md:flex-row md:items-center md:justify-between md:px-7">
+              <div className="flex flex-wrap gap-7">
+                <a href="mailto:akjags@gmail.com" className="inline-flex items-center gap-2 hover:text-ink">
+                  <Mail size={18} aria-hidden />
                   Email
                 </a>
-                <a href="https://github.com/akjags" className="hover:text-ink">
+                <a href="https://github.com/akjags" className="inline-flex items-center gap-2 hover:text-ink">
+                  <Github size={18} aria-hidden />
                   GitHub
                 </a>
-                <a href="https://scholar.google.com/citations?user=JbE7DWYAAAAJ" className="hover:text-ink">
-                  Scholar
+                <a href="https://www.linkedin.com/in/akshayjagadeesh" className="inline-flex items-center gap-2 hover:text-ink">
+                  <Linkedin size={18} aria-hidden />
+                  LinkedIn
                 </a>
               </div>
+              <p>© {new Date().getFullYear()} Akshay Jagadeesh</p>
             </div>
           </footer>
+          </div>
         </div>
       </body>
     </html>

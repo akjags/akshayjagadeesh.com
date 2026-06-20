@@ -5,7 +5,11 @@
 
 # Hugo
 resources/
-public/
+public/*
+!public/images/
+public/images/*
+!public/images/akshay-headshot.jpg
+!public/images/lemon-herb-rice.png
 .Rproj.user
 
 # Next.js

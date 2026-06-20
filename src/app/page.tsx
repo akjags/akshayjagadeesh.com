@@ -1,162 +1,147 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, BookOpen, Brain, Mail, Sprout } from "lucide-react";
+import {
+  ArrowRight,
+  BarChart3,
+  BookMarked,
+  Code2,
+  FileText,
+  Layers3,
+  MapPin,
+} from "lucide-react";
 import { publications, posts } from "@/lib/content";
-import { SectionHeading } from "@/components/SectionHeading";
+
+const selectedWork = [
+  {
+    icon: BookMarked,
+    title: "Designing for clarity",
+    body: "On information design and decision-making.",
+    meta: "Essay · 2024",
+  },
+  {
+    icon: Code2,
+    title: "Open tools",
+    body: "Small tools for everyday research problems.",
+    meta: "Project · 2023",
+  },
+  {
+    icon: BarChart3,
+    title: "Data at the margins",
+    body: "Exploring datasets and their gaps.",
+    meta: "Report · 2023",
+  },
+  {
+    icon: Layers3,
+    title: "Cities, quietly",
+    body: "Notes from walks and conversations.",
+    meta: "Photo series · 2022",
+  },
+];
 
 export default function Home() {
-  const selected = publications.filter((publication) => publication.selected).slice(0, 3);
+  const selectedPublications = publications.slice(0, 5);
+  const selectedPosts = posts.slice(0, 5);
 
   return (
-    <main>
-      <section className="noise border-b border-ink/10">
-        <div className="mx-auto grid max-w-6xl gap-10 px-5 py-16 md:grid-cols-[1.05fr_0.95fr] md:py-24">
-          <div className="flex flex-col justify-between gap-12">
-            <div>
-              <p className="mb-5 text-xs uppercase tracking-[0.18em] text-moss">
-                Neuroscience · Vision · Models
-              </p>
-              <h1 className="max-w-3xl font-serif text-5xl leading-[0.96] text-ink md:text-7xl">
-                I study how brains and models make sense of visual worlds.
-              </h1>
-              <p className="mt-7 max-w-2xl text-lg leading-8 text-ink/72">
-                I am a postdoctoral research scientist at Harvard Medical School in Margaret
-                Livingstone&apos;s lab. My work asks how visual cortex represents sensory structure,
-                how attention changes those representations, and where human perception diverges
-                from modern computer vision systems.
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              <Link className="rounded-md bg-ink px-4 py-3 text-sm font-medium text-white transition hover:bg-moss" href="/publications">
-                View publications
-              </Link>
-              <Link className="rounded-md border border-ink/15 px-4 py-3 text-sm font-medium text-ink transition hover:border-blue hover:text-blue" href="/writing">
-                Read notes
-              </Link>
-            </div>
-          </div>
-          <div className="self-end">
-            <div className="overflow-hidden rounded-lg border border-ink/10 bg-paper shadow-soft">
-              <Image
-                src="/images/akshay-headshot.jpg"
-                alt="Akshay Jagadeesh"
-                width={1600}
-                height={900}
-                priority
-                className="aspect-[4/3] w-full object-cover"
-              />
-              <div className="grid grid-cols-3 border-t border-ink/10 text-sm">
-                {[
-                  ["Current", "Harvard Medical School"],
-                  ["Training", "Stanford PhD"],
-                  ["Before", "UC Berkeley"],
-                ].map(([label, value]) => (
-                  <div key={label} className="border-r border-ink/10 p-4 last:border-r-0">
-                    <p className="text-xs uppercase tracking-[0.14em] text-ink/45">{label}</p>
-                    <p className="mt-2 leading-5 text-ink/78">{value}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+    <main className="noise">
+      <section className="grid gap-8 border-b border-ink/12 px-5 py-8 md:grid-cols-[240px_1fr] md:px-7 md:py-10 lg:gap-12">
+        <Image
+          src="/images/akshay-headshot.jpg"
+          alt="Akshay Jagadeesh"
+          width={720}
+          height={720}
+          priority
+          className="aspect-square w-full max-w-[280px] border border-ink/8 object-cover grayscale md:max-w-none"
+        />
+        <div className="flex max-w-3xl flex-col justify-center">
+          <h1 className="font-serif text-5xl leading-[1.02] text-ink md:text-6xl">
+            Akshay Jagadeesh
+          </h1>
+          <p className="mt-5 max-w-2xl text-xl leading-8 text-ink/86">
+            I write, build, and learn at the edges of technology, design, neuroscience, and
+            society.
+          </p>
+          <p className="mt-8 inline-flex items-center gap-2 text-sm text-moss">
+            <MapPin size={18} aria-hidden />
+            Bengaluru, India
+          </p>
         </div>
       </section>
 
-      <section className="bg-paper">
-        <div className="mx-auto max-w-6xl px-5 py-16">
-          <SectionHeading eyebrow="Selected work" title="Recent questions and papers">
-            <p>
-              I use psychophysics, fMRI, electrophysiology, and computational modeling to study the
-              geometry of visual representations and the computations that make them useful.
-            </p>
-          </SectionHeading>
-          <div className="divide-y divide-ink/10 border-y border-ink/10">
-            {selected.map((publication) => (
-              <a
-                key={publication.title}
-                href={publication.href}
-                className="grid gap-4 py-6 transition hover:bg-mist/70 md:grid-cols-[120px_1fr_100px]"
-              >
-                <p className="text-sm text-ink/55">{publication.year}</p>
-                <div>
-                  <h3 className="text-xl font-medium leading-snug text-ink">{publication.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-ink/62">{publication.authors}</p>
-                </div>
-                <p className="flex items-center gap-2 text-sm text-blue">
-                  {publication.venue}
-                  <ArrowUpRight size={16} aria-hidden />
-                </p>
-              </a>
-            ))}
-          </div>
+      <section className="border-b border-ink/12 px-5 py-8 md:px-7">
+        <div className="mb-6 flex items-center justify-between gap-4">
+          <h2 className="font-serif text-3xl text-ink">Selected work</h2>
+          <Link
+            href="/publications"
+            className="inline-flex items-center gap-2 text-sm text-blue hover:text-ink"
+          >
+            View all
+            <ArrowRight size={16} aria-hidden />
+          </Link>
         </div>
-      </section>
-
-      <section className="border-y border-ink/10 bg-flax/35">
-        <div className="mx-auto grid max-w-6xl gap-10 px-5 py-16 md:grid-cols-3">
-          {[
-            {
-              icon: Brain,
-              title: "Visual representations",
-              body: "How sensory inputs become usable structure for perception and behavior.",
-            },
-            {
-              icon: Sprout,
-              title: "Attention and readout",
-              body: "How task demands shape what the brain extracts from visual cortex.",
-            },
-            {
-              icon: BookOpen,
-              title: "Human-model gaps",
-              body: "How similarities and failures in neural networks can sharpen questions about minds.",
-            },
-          ].map((item) => (
-            <div key={item.title} className="rounded-lg border border-ink/10 bg-paper p-5">
-              <item.icon className="mb-5 text-moss" size={24} aria-hidden />
-              <h3 className="font-serif text-2xl text-ink">{item.title}</h3>
-              <p className="mt-3 text-sm leading-6 text-ink/65">{item.body}</p>
-            </div>
+        <div className="grid gap-6 md:grid-cols-4">
+          {selectedWork.map((item) => (
+            <article key={item.title} className="min-h-[138px]">
+              <item.icon className="mb-4 text-moss" size={28} strokeWidth={1.6} aria-hidden />
+              <h3 className="text-base font-medium text-ink">{item.title}</h3>
+              <p className="mt-2 text-sm leading-5 text-ink/78">{item.body}</p>
+              <p className="mt-4 text-sm text-ink/56">{item.meta}</p>
+            </article>
           ))}
         </div>
       </section>
 
-      <section className="bg-mist">
-        <div className="mx-auto grid max-w-6xl gap-12 px-5 py-16 md:grid-cols-[0.85fr_1.15fr]">
-          <SectionHeading eyebrow="Notes" title="Short reflections">
-            <p>
-              A quieter place for ideas that are too informal for papers but too useful to leave in
-              a notebook.
-            </p>
-          </SectionHeading>
+      <section className="grid gap-0 md:grid-cols-2">
+        <div className="border-b border-ink/12 px-5 py-7 md:border-b-0 md:border-r md:px-7">
+          <div className="mb-5 flex items-center justify-between gap-4">
+            <h2 className="font-serif text-3xl text-ink">Notes</h2>
+            <Link
+              href="/writing"
+              className="inline-flex items-center gap-2 text-sm text-blue hover:text-ink"
+            >
+              View all
+              <ArrowRight size={16} aria-hidden />
+            </Link>
+          </div>
           <div className="space-y-4">
-            {posts.map((post) => (
-              <Link
-                key={post.slug}
-                href={`/writing/${post.slug}`}
-                className="block rounded-lg border border-ink/10 bg-paper p-5 transition hover:border-blue/40 hover:shadow-soft"
-              >
-                <p className="text-xs uppercase tracking-[0.14em] text-clay">{post.date}</p>
-                <h3 className="mt-3 font-serif text-2xl text-ink">{post.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-ink/65">{post.dek}</p>
+            {selectedPosts.map((post) => (
+              <Link key={post.slug} href={`/writing/${post.slug}`} className="grid grid-cols-[18px_1fr] gap-3">
+                <FileText size={18} className="mt-0.5 text-moss" strokeWidth={1.5} aria-hidden />
+                <span>
+                  <span className="block text-sm leading-5 text-ink">{post.title}</span>
+                  <span className="block text-sm text-ink/52">{post.date}</span>
+                </span>
               </Link>
             ))}
           </div>
         </div>
-      </section>
 
-      <section className="bg-paper">
-        <div className="mx-auto flex max-w-6xl flex-col gap-5 px-5 py-14 md:flex-row md:items-center md:justify-between">
-          <div>
-            <p className="text-xs uppercase tracking-[0.18em] text-moss">Contact</p>
-            <h2 className="mt-3 font-serif text-3xl text-ink">Ideas, papers, collaborations, hello.</h2>
+        <div className="px-5 py-7 md:px-7">
+          <div className="mb-5 flex items-center justify-between gap-4">
+            <h2 className="font-serif text-3xl text-ink">Publications</h2>
+            <Link
+              href="/publications"
+              className="inline-flex items-center gap-2 text-sm text-blue hover:text-ink"
+            >
+              View all
+              <ArrowRight size={16} aria-hidden />
+            </Link>
           </div>
-          <a
-            href="mailto:akjags@gmail.com"
-            className="inline-flex w-fit items-center gap-2 rounded-md border border-ink/15 px-4 py-3 text-sm font-medium transition hover:border-blue hover:text-blue"
-          >
-            <Mail size={16} aria-hidden />
-            Send email
-          </a>
+          <div className="space-y-4">
+            {selectedPublications.map((publication) => (
+              <a
+                key={publication.title}
+                href={publication.href}
+                className="grid grid-cols-[18px_1fr] gap-3"
+              >
+                <FileText size={18} className="mt-0.5 text-moss" strokeWidth={1.5} aria-hidden />
+                <span>
+                  <span className="block text-sm leading-5 text-ink">{publication.venue}</span>
+                  <span className="block text-sm text-ink/52">{publication.year}</span>
+                </span>
+              </a>
+            ))}
+          </div>
         </div>
       </section>
     </main>

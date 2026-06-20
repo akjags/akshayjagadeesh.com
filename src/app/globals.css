@@ -4,7 +4,7 @@
 
 :root {
   --font-sans: "Inter", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
-  --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --font-serif: "Newsreader", "Iowan Old Style", Georgia, "Times New Roman", serif;
   color-scheme: light;
 }
 
@@ -19,11 +19,13 @@ html {
 body {
   margin: 0;
   background:
-    linear-gradient(180deg, rgba(247, 248, 244, 0.9), rgba(255, 253, 247, 0.9)),
-    #f7f8f4;
+    radial-gradient(circle at top left, rgba(190, 198, 179, 0.22), transparent 34rem),
+    radial-gradient(circle at bottom right, rgba(73, 106, 128, 0.1), transparent 32rem),
+    linear-gradient(180deg, #f7f7f0, #eff1e9 56%, #f8f4eb);
   color: #18201d;
   font-family: var(--font-sans);
   letter-spacing: 0;
+  min-height: 100vh;
 }
 
 a {
@@ -36,8 +38,10 @@ a {
 }
 
 .noise {
-  background-image: radial-gradient(rgba(24, 32, 29, 0.06) 0.7px, transparent 0.7px);
-  background-size: 18px 18px;
+  background-image:
+    radial-gradient(rgba(24, 32, 29, 0.055) 0.65px, transparent 0.65px),
+    linear-gradient(120deg, rgba(255, 255, 255, 0.7), rgba(240, 242, 231, 0.36));
+  background-size: 18px 18px, auto;
 }
 
 .content p {
@@ -50,3 +54,38 @@ a {
   text-decoration: underline;
   text-underline-offset: 4px;
 }
+
+.leaf-mark {
+  position: relative;
+  width: 7.5rem;
+  height: 4.8rem;
+}
+
+.leaf-mark::before {
+  content: "";
+  position: absolute;
+  inset: 2.25rem 0.6rem auto 0.7rem;
+  height: 1px;
+  background: #77805f;
+  transform: rotate(16deg);
+  transform-origin: left center;
+}
+
+.leaf-mark span {
+  position: absolute;
+  width: 1.45rem;
+  height: 0.46rem;
+  border-radius: 999px 0;
+  background: #8a9270;
+  opacity: 0.9;
+}
+
+.leaf-mark span:nth-child(1) { left: 1rem; top: 2rem; transform: rotate(204deg); }
+.leaf-mark span:nth-child(2) { left: 1.8rem; top: 1.35rem; transform: rotate(230deg); }
+.leaf-mark span:nth-child(3) { left: 2.75rem; top: 1rem; transform: rotate(252deg); }
+.leaf-mark span:nth-child(4) { left: 3.7rem; top: 0.75rem; transform: rotate(276deg); }
+.leaf-mark span:nth-child(5) { left: 4.85rem; top: 1.05rem; transform: rotate(286deg); }
+.leaf-mark span:nth-child(6) { left: 2.55rem; top: 2.35rem; transform: rotate(18deg); }
+.leaf-mark span:nth-child(7) { left: 3.55rem; top: 2.72rem; transform: rotate(18deg); }
+.leaf-mark span:nth-child(8) { left: 4.65rem; top: 3.02rem; transform: rotate(18deg); }
+.leaf-mark span:nth-child(9) { left: 5.72rem; top: 3.2rem; transform: rotate(12deg); }
