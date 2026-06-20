@@ -57,9 +57,10 @@ export default function Home() {
             Akshay Jagadeesh
           </h1>
           <p className="mt-5 max-w-2xl text-xl leading-8 text-ink/86">
-            I&apos;m a Research Scientist at OpenAI working on AI alignment, AI for health and
-            medicine, and the science of intelligent systems. Previously, I was a computational
-            neuroscientist studying how human and primate brains represent visual objects.
+            I&apos;m a Research Scientist at OpenAI working to build AI systems that are deeply
+            and persistently beneficial, with a particular focus on health and medicine.
+            Previously, I was a computational neuroscientist studying how human and primate brains
+            represent visual objects.
           </p>
         </div>
       </section>
