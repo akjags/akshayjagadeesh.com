@@ -40,6 +40,16 @@ export type EventPage = {
 
 export const publications: Publication[] = [
   {
+    title: "Reinforcement Learning Towards Broadly and Persistently Beneficial Models",
+    authors:
+      "Akshay V. Jagadeesh, Rahul K. Arora, Khaled Saab, Ali Malik, Mikhail Trofimov, Foivos Tsimpourlas, Johannes Heidecke, Karan Singhal",
+    venue: "OpenAI Alignment Blog",
+    year: "2026",
+    href: "https://alignment.openai.com/beneficial-rl/",
+    pdf: "https://cdn.openai.com/pdf/beneficial-rl.pdf",
+    selected: true,
+  },
+  {
     title: "Assessing equivariance in visual neural representations",
     authors: "Akshay V. Jagadeesh, Will Xiao, Margaret S. Livingstone",
     venue: "CCN",

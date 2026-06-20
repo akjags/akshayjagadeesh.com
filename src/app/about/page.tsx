@@ -20,34 +20,39 @@ export default function AboutPage() {
           />
         </div>
         <div>
-          <SectionHeading eyebrow="About" title="Neuroscientist studying perception and behavior" />
+          <SectionHeading eyebrow="About" title="Research scientist studying intelligent systems" />
           <div className="content text-lg text-ink/72">
             <p>
-              I am a postdoctoral research scientist studying neuroscience at Harvard Medical School,
-              in the lab of Dr. Marge Livingstone. My research focuses on understanding human visual
-              perception: how the brain transforms sensory inputs into the rich perceptual experience
-              that guides behavior.
+              I am a scientist working at the intersection of artificial intelligence and
+              neuroscience. My early work focused on how the brain supports perception and behavior,
+              using computational models to connect neural activity with cognition.
             </p>
             <p>
-              A central goal of my work is to characterize the geometry of sensory representations in
-              visual cortex and model the cortical computations involved in using those representations
-              for goal-driven behavior. I am especially interested in attention as a mechanism for
-              flexibly extracting and modulating sensory representations through task-dependent readouts.
+              After nearly a decade in academic research, including a PhD at Stanford University and a
+              postdoctoral fellowship at Harvard Medical School, I moved into industry to apply these
+              ideas more broadly. I am now a Research Scientist at OpenAI, where I work on AI
+              alignment and AI for health and medicine.
             </p>
             <p>
-              I completed my PhD in Psychology and Computational Cognitive Neuroscience at Stanford,
-              advised by Justin Gardner. Before that, I studied Computer Science and Cognitive Science
-              at UC Berkeley and worked in Mark D&apos;Esposito&apos;s lab.
+              My current work has two linked aims: making AI systems more reliable, beneficial, and
+              aligned with human values, and exploring how AI can accelerate progress in health,
+              medicine, and scientific discovery. I am especially interested in translating lessons
+              from neuroscience and modeling into tools that are safe, useful, and genuinely helpful
+              to people.
+            </p>
+            <p>
+              Across the work, the underlying question is the same: how do intelligent systems learn,
+              represent, and act in the world, and how can we shape those systems responsibly?
             </p>
           </div>
           <div className="mt-8 grid gap-3 text-sm text-ink/70 sm:grid-cols-2">
             <div className="rounded-lg border border-ink/10 bg-paper p-4">
-              <p className="font-medium text-ink">Interests</p>
-              <p className="mt-2">Computational neuroscience, vision science, attention, texture perception.</p>
+              <p className="font-medium text-ink">Current focus</p>
+              <p className="mt-2">AI alignment, AI for health and medicine, reliable model behavior.</p>
             </div>
             <div className="rounded-lg border border-ink/10 bg-paper p-4">
-              <p className="font-medium text-ink">Teaching</p>
-              <p className="mt-2">Courses in cognitive neuroscience, perception, foundations of cognition, and AI.</p>
+              <p className="font-medium text-ink">Background</p>
+              <p className="mt-2">Computational neuroscience, vision science, cognition, and modeling.</p>
             </div>
           </div>
         </div>

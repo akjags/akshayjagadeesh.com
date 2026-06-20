@@ -13,8 +13,8 @@ export default function PublicationsPage() {
       <section className="mx-auto max-w-6xl px-5 py-16 md:py-24">
         <SectionHeading eyebrow="Publications" title="Papers, proceedings, and presentations">
           <p>
-            Work on visual perception, representational geometry, attention, texture, and comparisons
-            between biological and artificial vision systems.
+            Work on AI alignment, AI for health and medicine, computational neuroscience, visual
+            perception, and comparisons between biological and artificial intelligent systems.
           </p>
         </SectionHeading>
         <div className="divide-y divide-ink/10 border-y border-ink/10">

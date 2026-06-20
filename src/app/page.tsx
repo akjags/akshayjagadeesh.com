@@ -2,44 +2,44 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
-  BarChart3,
-  BookMarked,
-  Code2,
+  BrainCircuit,
   FileText,
-  Layers3,
+  HeartPulse,
   MapPin,
+  Microscope,
+  ShieldCheck,
 } from "lucide-react";
 import { publications, posts } from "@/lib/content";
 
 const selectedWork = [
   {
-    icon: BookMarked,
-    title: "Designing for clarity",
-    body: "On information design and decision-making.",
-    meta: "Essay · 2024",
+    icon: ShieldCheck,
+    title: "Beneficial RL",
+    body: "Training models for broadly useful behavior that persists under pressure.",
+    meta: "OpenAI · 2026",
   },
   {
-    icon: Code2,
-    title: "Open tools",
-    body: "Small tools for everyday research problems.",
-    meta: "Project · 2023",
+    icon: HeartPulse,
+    title: "AI for health",
+    body: "Exploring how AI can accelerate progress in health, medicine, and scientific discovery.",
+    meta: "OpenAI · ongoing",
   },
   {
-    icon: BarChart3,
-    title: "Data at the margins",
-    body: "Exploring datasets and their gaps.",
-    meta: "Report · 2023",
+    icon: BrainCircuit,
+    title: "Neural computation",
+    body: "Using models to connect neural activity with perception and behavior.",
+    meta: "Stanford · Harvard",
   },
   {
-    icon: Layers3,
-    title: "Cities, quietly",
-    body: "Notes from walks and conversations.",
-    meta: "Photo series · 2022",
+    icon: Microscope,
+    title: "Vision and models",
+    body: "Studying where biological and artificial visual systems align and diverge.",
+    meta: "PNAS · CCN",
   },
 ];
 
 export default function Home() {
-  const selectedPublications = publications.slice(0, 5);
+  const selectedPublications = publications.filter((publication) => publication.selected).slice(0, 5);
   const selectedPosts = posts.slice(0, 5);
 
   return (
@@ -58,12 +58,12 @@ export default function Home() {
             Akshay Jagadeesh
           </h1>
           <p className="mt-5 max-w-2xl text-xl leading-8 text-ink/86">
-            I write, build, and learn at the edges of technology, design, neuroscience, and
-            society.
+            I&apos;m a Research Scientist at OpenAI working on AI alignment, AI for health and
+            medicine, and the science of intelligent systems.
           </p>
           <p className="mt-8 inline-flex items-center gap-2 text-sm text-moss">
             <MapPin size={18} aria-hidden />
-            Bengaluru, India
+            OpenAI · San Francisco, CA
           </p>
         </div>
       </section>
@@ -136,8 +136,10 @@ export default function Home() {
               >
                 <FileText size={18} className="mt-0.5 text-moss" strokeWidth={1.5} aria-hidden />
                 <span>
-                  <span className="block text-sm leading-5 text-ink">{publication.venue}</span>
-                  <span className="block text-sm text-ink/52">{publication.year}</span>
+                  <span className="block text-sm leading-5 text-ink">{publication.title}</span>
+                  <span className="block text-sm text-ink/52">
+                    {publication.venue} · {publication.year}
+                  </span>
                 </span>
               </a>
             ))}

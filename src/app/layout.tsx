@@ -10,11 +10,11 @@ export const metadata: Metadata = {
     template: "%s | Akshay Jagadeesh",
   },
   description:
-    "Neuroscientist studying visual perception, attention, and computational models of vision.",
+    "Research Scientist at OpenAI working on AI alignment, AI for health and medicine, and the science of intelligent systems.",
   openGraph: {
     title: "Akshay Jagadeesh",
     description:
-      "Neuroscientist studying visual perception, attention, and computational models of vision.",
+      "Research Scientist at OpenAI working on AI alignment, AI for health and medicine, and the science of intelligent systems.",
     url: "https://www.akshayjagadeesh.com",
     siteName: "Akshay Jagadeesh",
     images: [{ url: "/images/akshay-headshot.jpg", width: 1600, height: 900 }],
