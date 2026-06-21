@@ -6,5 +6,5 @@ export const metadata = {
 };
 
 export default async function EventsPage() {
-  redirect("/events/amara-1st-birthday/age-sort");
+  redirect("/events/amara-1st-birthday");
 }

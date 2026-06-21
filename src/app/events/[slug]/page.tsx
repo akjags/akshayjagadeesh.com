@@ -15,5 +15,5 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
   const event = getEvent(slug);
   if (!event) notFound();
 
-  redirect("/events/amara-1st-birthday/age-sort");
+  redirect("/events/amara-1st-birthday");
 }
