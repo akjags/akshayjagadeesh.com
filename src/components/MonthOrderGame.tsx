@@ -115,8 +115,9 @@ export function MonthOrderGame() {
           <div className="mt-5 rounded-lg border border-moss/25 bg-[#eef1df] px-5 py-4 text-ink shadow-soft">
             <p className="inline-flex items-center gap-2 font-serif text-2xl leading-tight">
               <Trophy className="text-moss" size={24} strokeWidth={1.6} aria-hidden />
-              {displayName} placed {score} {score === 1 ? "image" : "images"} in the correct
-              position!
+              {score === orderedImages.length
+                ? `${displayName} placed all 12 images in the correct position. You win!`
+                : `${displayName} placed ${score} out of 12 images in the correct position. Try again!`}
             </p>
             {score < orderedImages.length ? (
               <p className="mt-2 text-sm text-ink/68">
