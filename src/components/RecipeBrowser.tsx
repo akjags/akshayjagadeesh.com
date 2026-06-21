@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Clock3, Search, Sparkles, UsersRound, X } from "lucide-react";
+import { Clock3, LayoutGrid, Rows3, Search, Sparkles, UsersRound, X } from "lucide-react";
 import { useMemo, useState } from "react";
 import type { Recipe } from "@/lib/content";
 
@@ -51,6 +51,7 @@ function searchText(recipe: Recipe) {
 export function RecipeBrowser({ recipes }: { recipes: Recipe[] }) {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("All");
+  const [viewMode, setViewMode] = useState<"comfortable" | "compact">("comfortable");
 
   const filteredRecipes = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
@@ -145,53 +146,122 @@ export function RecipeBrowser({ recipes }: { recipes: Recipe[] }) {
           </div>
         </div>
 
-        <div className="mt-6 flex items-center justify-between gap-4 text-sm text-ink/58">
-          <p>
-            Showing {filteredRecipes.length} of {recipes.length} recipes
-          </p>
-          <p className="hidden sm:block">Photos are warm previews; recipes can be tuned after cooking.</p>
+        <div className="mt-6 flex flex-col gap-3 text-sm text-ink/58 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p>
+              Showing {filteredRecipes.length} of {recipes.length} recipes
+            </p>
+            <p className="hidden sm:block">
+              Photos are warm previews; recipes can be tuned after cooking.
+            </p>
+          </div>
+
+          <div
+            className="inline-flex w-fit rounded-lg border border-ink/14 bg-paper p-1"
+            aria-label="Recipe card density"
+          >
+            <button
+              type="button"
+              onClick={() => setViewMode("comfortable")}
+              aria-pressed={viewMode === "comfortable"}
+              className={
+                viewMode === "comfortable"
+                  ? "inline-flex h-9 items-center gap-2 rounded-md bg-moss px-3 text-sm font-medium text-paper"
+                  : "inline-flex h-9 items-center gap-2 rounded-md px-3 text-sm text-ink/64 transition hover:bg-ink/6 hover:text-ink"
+              }
+            >
+              <LayoutGrid size={16} aria-hidden />
+              <span>Cards</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setViewMode("compact")}
+              aria-pressed={viewMode === "compact"}
+              className={
+                viewMode === "compact"
+                  ? "inline-flex h-9 items-center gap-2 rounded-md bg-moss px-3 text-sm font-medium text-paper"
+                  : "inline-flex h-9 items-center gap-2 rounded-md px-3 text-sm text-ink/64 transition hover:bg-ink/6 hover:text-ink"
+              }
+            >
+              <Rows3 size={16} aria-hidden />
+              <span>Compact</span>
+            </button>
+          </div>
         </div>
 
-        <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div
+          className={
+            viewMode === "compact"
+              ? "mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6"
+              : "mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+          }
+        >
           {filteredRecipes.map((recipe) => (
             <Link
               key={recipe.slug}
               href={`/recipes/${recipe.slug}`}
               className="group overflow-hidden rounded-lg border border-ink/12 bg-paper shadow-soft transition hover:-translate-y-0.5 hover:border-moss/30 hover:shadow-lg"
             >
-              <div className="relative aspect-[1.35] overflow-hidden border-b border-ink/10">
-                <Image
-                  src={recipe.image}
-                  alt=""
-                  fill
-                  sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw"
-                  className="object-cover transition duration-500 group-hover:scale-[1.04]"
-                />
-                {recipe.synthesizedByGpt55 ? (
-                  <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-md bg-paper/90 px-2 py-1 text-xs font-medium text-moss shadow-sm backdrop-blur">
-                    <Sparkles size={13} aria-hidden />
-                    GPT-5.5 draft
-                  </span>
-                ) : null}
-              </div>
-              <div className="p-4">
-                <div className="flex items-center justify-between gap-3">
-                  <p className="text-xs uppercase tracking-[0.16em] text-moss">{recipe.cuisine}</p>
-                  <p className="text-xs text-ink/52">{recipe.tags[0]}</p>
-                </div>
-                <h2 className="mt-2 font-serif text-2xl leading-tight text-ink">{recipe.title}</h2>
-                <p className="mt-2 line-clamp-2 text-sm leading-6 text-ink/68">{recipe.dek}</p>
-                <p className="mt-4 flex flex-wrap items-center gap-4 text-xs text-ink/58">
-                  <span className="inline-flex items-center gap-1">
-                    <Clock3 size={14} aria-hidden />
-                    {recipe.time}
-                  </span>
-                  <span className="inline-flex items-center gap-1">
-                    <UsersRound size={14} aria-hidden />
-                    {recipe.servings}
-                  </span>
-                </p>
-              </div>
+              {viewMode === "compact" ? (
+                <>
+                  <div className="relative aspect-square overflow-hidden border-b border-ink/10">
+                    <Image
+                      src={recipe.image}
+                      alt=""
+                      fill
+                      sizes="(min-width: 1280px) 190px, (min-width: 1024px) 20vw, (min-width: 640px) 33vw, 50vw"
+                      className="object-cover transition duration-500 group-hover:scale-[1.04]"
+                    />
+                  </div>
+                  <div className="px-3 py-2.5">
+                    <h2 className="line-clamp-2 min-h-[40px] text-sm font-medium leading-5 text-ink">
+                      {recipe.title}
+                    </h2>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="relative aspect-[1.35] overflow-hidden border-b border-ink/10">
+                    <Image
+                      src={recipe.image}
+                      alt=""
+                      fill
+                      sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw"
+                      className="object-cover transition duration-500 group-hover:scale-[1.04]"
+                    />
+                    {recipe.synthesizedByGpt55 ? (
+                      <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-md bg-paper/90 px-2 py-1 text-xs font-medium text-moss shadow-sm backdrop-blur">
+                        <Sparkles size={13} aria-hidden />
+                        GPT-5.5 draft
+                      </span>
+                    ) : null}
+                  </div>
+                  <div className="p-4">
+                    <div className="flex items-center justify-between gap-3">
+                      <p className="text-xs uppercase tracking-[0.16em] text-moss">
+                        {recipe.cuisine}
+                      </p>
+                      <p className="text-xs text-ink/52">{recipe.tags[0]}</p>
+                    </div>
+                    <h2 className="mt-2 font-serif text-2xl leading-tight text-ink">
+                      {recipe.title}
+                    </h2>
+                    <p className="mt-2 line-clamp-2 text-sm leading-6 text-ink/68">
+                      {recipe.dek}
+                    </p>
+                    <p className="mt-4 flex flex-wrap items-center gap-4 text-xs text-ink/58">
+                      <span className="inline-flex items-center gap-1">
+                        <Clock3 size={14} aria-hidden />
+                        {recipe.time}
+                      </span>
+                      <span className="inline-flex items-center gap-1">
+                        <UsersRound size={14} aria-hidden />
+                        {recipe.servings}
+                      </span>
+                    </p>
+                  </div>
+                </>
+              )}
             </Link>
           ))}
         </div>

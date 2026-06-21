@@ -879,7 +879,7 @@ export const recipes: Recipe[] = [
     cuisine: "Mexican",
     time: "1.5 hr",
     servings: "6-8",
-    image: "/images/recipes/gobi-manchurian.jpg",
+    image: "/images/recipes/vegan-pozole-rojo.jpg",
     tags: ["mexican", "soup", "cookbook"],
     source: "From the Spicy Delicious cookbook.",
     ingredients: [
@@ -906,7 +906,7 @@ export const recipes: Recipe[] = [
     cuisine: "Indian",
     time: "20 min",
     servings: "3-4",
-    image: "/images/recipes/vegan-pozole-rojo.jpg",
+    image: "/images/recipes/onion-and-jalapeno-pakora.jpg",
     tags: ["snack", "indian", "cookbook"],
     source: "From the Spicy Delicious cookbook.",
     ingredients: [
@@ -932,7 +932,7 @@ export const recipes: Recipe[] = [
     cuisine: "Indo-Chinese",
     time: "30 min",
     servings: "3-4",
-    image: "/images/recipes/jollof-rice.jpg",
+    image: "/images/recipes/gobi-manchurian.jpg",
     tags: ["snack", "cauliflower", "cookbook"],
     source: "From the Spicy Delicious cookbook.",
     ingredients: [
@@ -1032,7 +1032,7 @@ export const recipes: Recipe[] = [
     cuisine: "West African",
     time: "1 hr",
     servings: "4",
-    image: "/images/recipes/onion-and-jalapeno-pakora.jpg",
+    image: "/images/recipes/jollof-rice.jpg",
     tags: ["rice", "west african", "cookbook"],
     source: "From the Spicy Delicious cookbook.",
     ingredients: [
