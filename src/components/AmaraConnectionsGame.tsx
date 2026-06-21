@@ -17,48 +17,48 @@ type ConnectionCard = {
 
 const groups: ConnectionGroup[] = [
   {
-    id: "party",
-    title: "Birthday party things",
-    words: ["CAKE", "CANDLE", "BALLOON", "PRESENT"],
+    id: "tiny-seeds",
+    title: "Fruits with tiny edible seeds",
+    words: ["BLUEBERRY", "KIWI", "RASPBERRY", "STRAWBERRY"],
     color: "bg-[#f4df8f]",
   },
   {
-    id: "baby",
-    title: "Baby gear",
-    words: ["BIB", "CRIB", "STROLLER", "PACIFIER"],
+    id: "pet-animals",
+    title: "Animals Amara has pet",
+    words: ["DOG", "HORSE", "RABBIT", "TURTLE"],
     color: "bg-[#b8d8a8]",
   },
   {
-    id: "foods",
-    title: "Tiny snacks",
-    words: ["PUFF", "MANGO", "YOGURT", "BANANA"],
+    id: "party",
+    title: "___ party",
+    words: ["BIRTHDAY", "POOL", "PIZZA", "TEA"],
     color: "bg-[#a8c8df]",
   },
   {
     id: "moves",
-    title: "One-year-old moves",
-    words: ["CRAWL", "CLAP", "POINT", "WAVE"],
+    title: 'Things that help with "movement"',
+    words: ["PEAR", "PRUNE", "TUMMY TIME", "WALKER"],
     color: "bg-[#d8b2d6]",
   },
 ];
 
 const startingOrder = [
-  "BALLOON",
-  "CRAWL",
-  "BIB",
-  "MANGO",
-  "POINT",
-  "CAKE",
-  "PUFF",
-  "STROLLER",
-  "CANDLE",
-  "YOGURT",
-  "WAVE",
-  "CRIB",
-  "PRESENT",
-  "CLAP",
-  "PACIFIER",
-  "BANANA",
+  "BLUEBERRY",
+  "DOG",
+  "BIRTHDAY",
+  "PEAR",
+  "POOL",
+  "KIWI",
+  "HORSE",
+  "PRUNE",
+  "TURTLE",
+  "PIZZA",
+  "RASPBERRY",
+  "WALKER",
+  "TUMMY TIME",
+  "RABBIT",
+  "TEA",
+  "STRAWBERRY",
 ];
 
 function buildCards() {
@@ -176,8 +176,8 @@ export function AmaraConnectionsGame() {
                   disabled={isComplete || isGameOver || isShaking}
                   className={
                     isSelected
-                      ? "flex aspect-[1.75] items-center justify-center rounded-lg bg-[#5f6156] px-2 text-center text-base font-black uppercase leading-none text-paper transition sm:text-2xl md:text-3xl"
-                      : "flex aspect-[1.75] items-center justify-center rounded-lg bg-[#e9e9df] px-2 text-center text-base font-black uppercase leading-none text-ink transition hover:bg-[#deded2] sm:text-2xl md:text-3xl"
+                      ? "flex aspect-[1.75] items-center justify-center rounded-lg bg-[#5f6156] px-2 text-center text-sm font-black uppercase leading-none text-paper transition sm:text-xl md:text-2xl"
+                      : "flex aspect-[1.75] items-center justify-center rounded-lg bg-[#e9e9df] px-2 text-center text-sm font-black uppercase leading-none text-ink transition hover:bg-[#deded2] sm:text-xl md:text-2xl"
                   }
                 >
                   {card.word}
