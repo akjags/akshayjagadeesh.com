@@ -89,3 +89,14 @@ a {
 .leaf-mark span:nth-child(7) { left: 3.55rem; top: 2.72rem; transform: rotate(18deg); }
 .leaf-mark span:nth-child(8) { left: 4.65rem; top: 3.02rem; transform: rotate(18deg); }
 .leaf-mark span:nth-child(9) { left: 5.72rem; top: 3.2rem; transform: rotate(12deg); }
+
+@keyframes connections-shake {
+  10%, 90% { transform: translateX(-1px); }
+  20%, 80% { transform: translateX(2px); }
+  30%, 50%, 70% { transform: translateX(-4px); }
+  40%, 60% { transform: translateX(4px); }
+}
+
+.connections-shake {
+  animation: connections-shake 0.48s ease-in-out;
+}
