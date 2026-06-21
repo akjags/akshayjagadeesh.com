@@ -1,8 +1,5 @@
-import { notFound } from "next/navigation";
-import { PasscodeGate } from "@/components/PasscodeGate";
-import { MonthOrderGame } from "@/components/MonthOrderGame";
+import { notFound, redirect } from "next/navigation";
 import { events, getEvent } from "@/lib/content";
-import { isUnlocked } from "@/lib/auth";
 
 export const metadata = {
   title: "Event",
@@ -18,15 +15,5 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
   const event = getEvent(slug);
   if (!event) notFound();
 
-  if (!(await isUnlocked())) {
-    return (
-      <PasscodeGate
-        title="Event"
-        description="Enter passcode"
-        redirectTo={`/events/${slug}`}
-      />
-    );
-  }
-
-  return <MonthOrderGame />;
+  redirect("/events/amara-1st-birthday/age-sort");
 }

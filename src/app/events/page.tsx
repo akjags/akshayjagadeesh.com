@@ -1,6 +1,4 @@
-import { PasscodeGate } from "@/components/PasscodeGate";
-import { MonthOrderGame } from "@/components/MonthOrderGame";
-import { isUnlocked } from "@/lib/auth";
+import { redirect } from "next/navigation";
 
 export const metadata = {
   title: "Event",
@@ -8,9 +6,5 @@ export const metadata = {
 };
 
 export default async function EventsPage() {
-  if (!(await isUnlocked())) {
-    return <PasscodeGate title="Event" description="Enter passcode" redirectTo="/events" />;
-  }
-
-  return <MonthOrderGame />;
+  redirect("/events/amara-1st-birthday/age-sort");
 }

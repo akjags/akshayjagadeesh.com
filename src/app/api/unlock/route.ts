@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { configuredPasscode, unlockCookie } from "@/lib/auth";
+import { configuredPasscode, eventUnlockCookie, unlockCookie } from "@/lib/auth";
 
 export async function POST(request: Request) {
   const form = await request.formData();
@@ -11,7 +11,7 @@ export async function POST(request: Request) {
   }
 
   const response = NextResponse.redirect(new URL(redirectTo, request.url), 303);
-  response.cookies.set(unlockCookie, "yes", {
+  response.cookies.set(redirectTo.startsWith("/events") ? eventUnlockCookie : unlockCookie, "yes", {
     httpOnly: true,
     sameSite: "lax",
     secure: process.env.NODE_ENV === "production",
