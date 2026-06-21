@@ -3,22 +3,10 @@
 .DS_Store
 *.swp
 
-# Hugo
-resources/
-public/*
-!public/images/
-public/images/*
-!public/images/akshay-headshot.jpg
-!public/images/lemon-herb-rice.png
-!public/images/events/
-!public/images/events/month-game/
-!public/images/events/month-game/*.jpg
-!public/images/recipes/
-public/images/recipes/*.png
-!public/images/recipes/*.jpg
-.Rproj.user
-
 # Next.js
 .next/
 node_modules/
 out/
+
+# Local editor/app state
+.Rproj.user/
