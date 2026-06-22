@@ -369,7 +369,7 @@ export function AmaraConnectionsGame() {
               setMessage("Selection cleared.");
             }}
             disabled={selectedIds.length === 0 || isComplete || isShaking}
-            className="h-14 rounded-full border-2 border-ink/35 bg-paper px-8 text-xl font-semibold text-ink/55 transition hover:border-ink hover:text-ink disabled:cursor-not-allowed disabled:border-ink/20 disabled:text-ink/30"
+            className="h-14 rounded-full border-2 border-ink/70 bg-paper px-8 text-xl font-semibold text-ink transition hover:border-ink hover:bg-[#eef1df] disabled:cursor-not-allowed disabled:border-ink/20 disabled:bg-paper disabled:text-ink/30"
           >
             Deselect All
           </button>
@@ -377,7 +377,7 @@ export function AmaraConnectionsGame() {
             type="button"
             onClick={submitGuess}
             disabled={selectedIds.length !== 4 || isComplete || isShaking}
-            className="h-14 rounded-full border-2 border-ink/35 bg-paper px-8 text-xl font-semibold text-ink/55 transition hover:border-ink hover:text-ink disabled:cursor-not-allowed disabled:border-ink/20 disabled:text-ink/30"
+            className="h-14 rounded-full border-2 border-ink/70 bg-paper px-8 text-xl font-semibold text-ink transition hover:border-ink hover:bg-[#eef1df] disabled:cursor-not-allowed disabled:border-ink/20 disabled:bg-paper disabled:text-ink/30"
           >
             Submit
           </button>
