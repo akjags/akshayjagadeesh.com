@@ -12,11 +12,11 @@ export default function AboutPage() {
       <section className="mx-auto grid max-w-6xl gap-10 px-5 py-16 md:grid-cols-[0.8fr_1.2fr] md:py-24">
         <div>
           <Image
-            src="/images/akshay-headshot-transparent.png"
+            src="/images/akshay-headshot.jpg"
             alt="Akshay Jagadeesh"
-            width={2000}
-            height={2000}
-            className="object-contain"
+            width={1813}
+            height={1813}
+            className="object-cover"
           />
         </div>
         <div>

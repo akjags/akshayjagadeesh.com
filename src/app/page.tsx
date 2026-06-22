@@ -46,12 +46,12 @@ export default function Home() {
     <main className="noise">
       <section className="grid gap-8 border-b border-ink/12 px-5 py-8 md:grid-cols-[240px_1fr] md:px-7 md:py-10 lg:gap-12">
         <Image
-          src="/images/akshay-headshot-transparent.png"
+          src="/images/akshay-headshot.jpg"
           alt="Akshay Jagadeesh"
           width={720}
           height={720}
           priority
-          className="aspect-square w-full max-w-[280px] object-contain md:max-w-none"
+          className="aspect-square w-full max-w-[280px] object-cover md:max-w-none"
         />
         <div className="flex max-w-3xl flex-col justify-center">
           <h1 className="font-serif text-5xl leading-[1.02] text-ink md:text-6xl">

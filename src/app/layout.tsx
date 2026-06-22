@@ -18,7 +18,7 @@ export const metadata: Metadata = {
       "Research Scientist at OpenAI working on AI alignment, AI for health and medicine, and the science of intelligent systems.",
     url: "https://www.akshayjagadeesh.com",
     siteName: "Akshay Jagadeesh",
-    images: [{ url: "/images/akshay-headshot-transparent.png", width: 2000, height: 2000 }],
+    images: [{ url: "/images/akshay-headshot.jpg", width: 1813, height: 1813 }],
     locale: "en_US",
     type: "website",
   },
@@ -32,7 +32,7 @@ const nav = [
 const paletteInitScript = `
 (() => {
   try {
-    const palette = window.localStorage.getItem("akshay-site-palette");
+    const palette = window.localStorage.getItem("akshay-site-palette-v2");
     const palettes = ["warm-herbarium", "bluegrass-editorial", "tea-slate", "misty-coast", "black-tea"];
     if (palettes.includes(palette)) document.documentElement.dataset.palette = palette;
   } catch {}

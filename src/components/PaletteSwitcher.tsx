@@ -36,8 +36,8 @@ const palettes: Palette[] = [
   },
 ];
 
-const storageKey = "akshay-site-palette";
-const defaultPalette = "bluegrass-editorial";
+const storageKey = "akshay-site-palette-v2";
+const defaultPalette = "black-tea";
 
 function isPaletteId(value: string | null): value is string {
   return palettes.some((palette) => palette.id === value);
