@@ -18,20 +18,20 @@ type ConnectionCard = {
 const groups: ConnectionGroup[] = [
   {
     id: "tiny-seeds",
-    title: "Fruits with tiny edible seeds",
+    title: "Fruits that Amara loves to eat",
     words: ["BLUEBERRY", "KIWI", "RASPBERRY", "STRAWBERRY"],
     color: "bg-[#f4df8f]",
   },
   {
-    id: "pet-animals",
-    title: "Animals Amara has pet",
-    words: ["DOG", "HORSE", "RABBIT", "TURTLE"],
+    id: "seen-animals",
+    title: "Animals Amara has seen",
+    words: ["DOG", "CHICKEN", "RABBIT", "TURTLE"],
     color: "bg-[#b8d8a8]",
   },
   {
-    id: "party",
-    title: "___ party",
-    words: ["BIRTHDAY", "POOL", "PIZZA", "TEA"],
+    id: "water",
+    title: "Forms of water that Amara loves",
+    words: ["DRINKING", "OCEAN", "POOL", "BATH"],
     color: "bg-[#a8c8df]",
   },
   {
@@ -45,19 +45,19 @@ const groups: ConnectionGroup[] = [
 const startingOrder = [
   "BLUEBERRY",
   "DOG",
-  "BIRTHDAY",
+  "DRINKING",
   "PEAR",
   "POOL",
   "KIWI",
-  "HORSE",
+  "CHICKEN",
   "PRUNE",
   "TURTLE",
-  "PIZZA",
+  "OCEAN",
   "RASPBERRY",
   "WALKER",
   "TUMMY TIME",
   "RABBIT",
-  "TEA",
+  "BATH",
   "STRAWBERRY",
 ];
 
