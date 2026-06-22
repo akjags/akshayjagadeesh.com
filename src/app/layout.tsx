@@ -17,7 +17,7 @@ export const metadata: Metadata = {
       "Research Scientist at OpenAI working on AI alignment, AI for health and medicine, and the science of intelligent systems.",
     url: "https://www.akshayjagadeesh.com",
     siteName: "Akshay Jagadeesh",
-    images: [{ url: "/images/akshay-headshot.jpg", width: 1600, height: 900 }],
+    images: [{ url: "/images/akshay-headshot-transparent.png", width: 2000, height: 2000 }],
     locale: "en_US",
     type: "website",
   },

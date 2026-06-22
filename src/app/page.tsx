@@ -46,7 +46,7 @@ export default function Home() {
     <main className="noise">
       <section className="grid gap-8 border-b border-ink/12 px-5 py-8 md:grid-cols-[240px_1fr] md:px-7 md:py-10 lg:gap-12">
         <Image
-          src="/images/akshay-headshot.jpg"
+          src="/images/akshay-headshot-transparent.png"
           alt="Akshay Jagadeesh"
           width={720}
           height={720}
