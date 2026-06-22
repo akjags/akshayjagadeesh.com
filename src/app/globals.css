@@ -5,7 +5,94 @@
 :root {
   --font-sans: "Inter", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
   --font-serif: "Newsreader", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --color-ink: 20 32 31;
+  --color-mist: 244 247 243;
+  --color-paper: 254 252 245;
+  --color-sage: 109 127 89;
+  --color-moss: 109 127 89;
+  --color-blue: 73 110 130;
+  --color-clay: 199 143 103;
+  --color-flax: 215 198 165;
+  --body-start: 244 247 243;
+  --body-mid: 247 243 234;
+  --body-end: 254 252 245;
+  --selection: 215 198 165;
   color-scheme: light;
+}
+
+:root[data-palette="warm-herbarium"] {
+  --color-ink: 24 33 27;
+  --color-mist: 247 243 234;
+  --color-paper: 255 253 247;
+  --color-sage: 168 180 154;
+  --color-moss: 104 122 69;
+  --color-blue: 74 105 117;
+  --color-clay: 199 143 103;
+  --color-flax: 216 208 191;
+  --body-start: 247 243 234;
+  --body-mid: 255 253 247;
+  --body-end: 238 231 216;
+  --selection: 216 208 191;
+}
+
+:root[data-palette="bluegrass-editorial"] {
+  --color-ink: 20 32 31;
+  --color-mist: 244 247 243;
+  --color-paper: 254 252 245;
+  --color-sage: 109 127 89;
+  --color-moss: 109 127 89;
+  --color-blue: 73 110 130;
+  --color-clay: 199 143 103;
+  --color-flax: 215 198 165;
+  --body-start: 244 247 243;
+  --body-mid: 247 243 234;
+  --body-end: 254 252 245;
+  --selection: 215 198 165;
+}
+
+:root[data-palette="tea-slate"] {
+  --color-ink: 27 34 32;
+  --color-mist: 243 241 232;
+  --color-paper: 252 250 242;
+  --color-sage: 111 117 68;
+  --color-moss: 111 117 68;
+  --color-blue: 64 93 102;
+  --color-clay: 185 155 107;
+  --color-flax: 214 208 192;
+  --body-start: 243 241 232;
+  --body-mid: 252 250 242;
+  --body-end: 232 228 213;
+  --selection: 185 155 107;
+}
+
+:root[data-palette="misty-coast"] {
+  --color-ink: 23 35 34;
+  --color-mist: 241 246 245;
+  --color-paper: 251 252 248;
+  --color-sage: 109 139 123;
+  --color-moss: 109 139 123;
+  --color-blue: 81 116 136;
+  --color-clay: 187 199 163;
+  --color-flax: 187 199 163;
+  --body-start: 241 246 245;
+  --body-mid: 251 252 248;
+  --body-end: 230 237 234;
+  --selection: 187 199 163;
+}
+
+:root[data-palette="black-tea"] {
+  --color-ink: 18 26 22;
+  --color-mist: 246 240 228;
+  --color-paper: 255 253 247;
+  --color-sage: 63 87 59;
+  --color-moss: 63 87 59;
+  --color-blue: 63 100 115;
+  --color-clay: 138 99 75;
+  --color-flax: 217 205 185;
+  --body-start: 246 240 228;
+  --body-mid: 255 253 247;
+  --body-end: 236 226 207;
+  --selection: 217 205 185;
 }
 
 * {
@@ -19,13 +106,19 @@ html {
 body {
   margin: 0;
   background:
-    radial-gradient(circle at top left, rgba(190, 198, 179, 0.22), transparent 34rem),
-    radial-gradient(circle at bottom right, rgba(73, 106, 128, 0.1), transparent 32rem),
-    linear-gradient(180deg, #f7f7f0, #eff1e9 56%, #f8f4eb);
-  color: #18201d;
+    radial-gradient(circle at top left, rgb(var(--color-sage) / 0.22), transparent 34rem),
+    radial-gradient(circle at bottom right, rgb(var(--color-blue) / 0.1), transparent 32rem),
+    linear-gradient(
+      180deg,
+      rgb(var(--body-start)),
+      rgb(var(--body-mid)) 56%,
+      rgb(var(--body-end))
+    );
+  color: rgb(var(--color-ink));
   font-family: var(--font-sans);
   letter-spacing: 0;
   min-height: 100vh;
+  transition: background-color 180ms ease, color 180ms ease;
 }
 
 a {
@@ -34,13 +127,13 @@ a {
 }
 
 ::selection {
-  background: #d7e2d2;
+  background: rgb(var(--selection));
 }
 
 .noise {
   background-image:
-    radial-gradient(rgba(24, 32, 29, 0.055) 0.65px, transparent 0.65px),
-    linear-gradient(120deg, rgba(255, 255, 255, 0.7), rgba(240, 242, 231, 0.36));
+    radial-gradient(rgb(var(--color-ink) / 0.055) 0.65px, transparent 0.65px),
+    linear-gradient(120deg, rgb(var(--color-paper) / 0.7), rgb(var(--color-mist) / 0.36));
   background-size: 18px 18px, auto;
 }
 
@@ -50,7 +143,7 @@ a {
 }
 
 .content a {
-  color: #496a80;
+  color: rgb(var(--color-blue));
   text-decoration: underline;
   text-underline-offset: 4px;
 }
@@ -66,7 +159,7 @@ a {
   position: absolute;
   inset: 2.25rem 0.6rem auto 0.7rem;
   height: 1px;
-  background: #77805f;
+  background: rgb(var(--color-moss));
   transform: rotate(16deg);
   transform-origin: left center;
 }
@@ -76,7 +169,7 @@ a {
   width: 1.45rem;
   height: 0.46rem;
   border-radius: 999px 0;
-  background: #8a9270;
+  background: rgb(var(--color-sage));
   opacity: 0.9;
 }
 

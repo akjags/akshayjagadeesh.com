@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Github, Linkedin, Mail } from "lucide-react";
+import { PaletteSwitcher } from "@/components/PaletteSwitcher";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -28,10 +29,21 @@ const nav = [
   { href: "/writing", label: "Notes" },
 ];
 
+const paletteInitScript = `
+(() => {
+  try {
+    const palette = window.localStorage.getItem("akshay-site-palette");
+    const palettes = ["warm-herbarium", "bluegrass-editorial", "tea-slate", "misty-coast", "black-tea"];
+    if (palettes.includes(palette)) document.documentElement.dataset.palette = palette;
+  } catch {}
+})();
+`;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
+        <script dangerouslySetInnerHTML={{ __html: paletteInitScript }} />
         <div className="min-h-screen px-3 py-3 sm:px-5 sm:py-4">
           <div className="mx-auto max-w-7xl overflow-hidden rounded-[18px] border border-ink/15 bg-paper/90 shadow-soft backdrop-blur">
           <header className="border-b border-ink/12">
@@ -54,6 +66,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </header>
           {children}
           <footer className="border-t border-ink/12">
+            <PaletteSwitcher />
             <div className="flex flex-col gap-4 px-5 py-8 text-sm text-ink/68 md:flex-row md:items-center md:justify-between md:px-7">
               <div className="flex flex-wrap gap-7">
                 <a href="mailto:akjags@gmail.com" className="inline-flex items-center gap-2 hover:text-ink">
