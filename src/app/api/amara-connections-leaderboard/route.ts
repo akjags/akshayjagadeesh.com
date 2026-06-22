@@ -81,7 +81,7 @@ export async function POST(request: Request) {
   const mistakes = Number(body.mistakes);
   const durationMs = Number(body.durationMs);
 
-  if (!name || !Number.isInteger(mistakes) || mistakes < 0 || mistakes > 4) {
+  if (!name || !Number.isInteger(mistakes) || mistakes < 0 || mistakes > 999) {
     return NextResponse.json({ error: "Invalid leaderboard entry." }, { status: 400 });
   }
 

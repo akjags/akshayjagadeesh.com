@@ -133,7 +133,7 @@ export function AmaraConnectionsGame() {
   const [elapsedMs, setElapsedMs] = useState(0);
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [solvedGroupIds, setSolvedGroupIds] = useState<string[]>([]);
-  const [mistakesRemaining, setMistakesRemaining] = useState(4);
+  const [errors, setErrors] = useState(0);
   const [isShaking, setIsShaking] = useState(false);
   const [message, setMessage] = useState("Select four cards and submit your guess.");
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
@@ -145,18 +145,16 @@ export function AmaraConnectionsGame() {
     .filter((group): group is ConnectionGroup => Boolean(group));
   const unsolvedCards = cards.filter((card) => !solvedGroupIds.includes(card.groupId));
   const isComplete = solvedGroupIds.length === groups.length;
-  const isGameOver = mistakesRemaining === 0 && !isComplete;
-  const mistakesMade = 4 - mistakesRemaining;
 
   useEffect(() => {
-    if (!startedAt || isComplete || isGameOver) return;
+    if (!startedAt || isComplete) return;
 
     const timer = window.setInterval(() => {
       setElapsedMs(Date.now() - startedAt);
     }, 250);
 
     return () => window.clearInterval(timer);
-  }, [isComplete, isGameOver, startedAt]);
+  }, [isComplete, startedAt]);
 
   function startGame(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -201,7 +199,7 @@ export function AmaraConnectionsGame() {
   }
 
   function toggleCard(cardId: string) {
-    if (isComplete || isGameOver || isShaking) return;
+    if (isComplete || isShaking) return;
 
     setSelectedIds((current) => {
       if (current.includes(cardId)) return current.filter((id) => id !== cardId);
@@ -211,7 +209,7 @@ export function AmaraConnectionsGame() {
   }
 
   function shuffle() {
-    if (isComplete || isGameOver || isShaking) return;
+    if (isComplete || isShaking) return;
     setCards((current) => {
       const solvedCards = current.filter((card) => solvedGroupIds.includes(card.groupId));
       const remainingCards = shuffleCards(current.filter((card) => !solvedGroupIds.includes(card.groupId)));
@@ -222,7 +220,7 @@ export function AmaraConnectionsGame() {
   }
 
   function submitGuess() {
-    if (selectedIds.length !== 4 || isComplete || isGameOver || isShaking) return;
+    if (selectedIds.length !== 4 || isComplete || isShaking) return;
 
     const selectedCards = cards.filter((card) => selectedIds.includes(card.id));
     const groupId = selectedCards[0]?.groupId;
@@ -240,16 +238,16 @@ export function AmaraConnectionsGame() {
         setElapsedMs(completionTime);
         setHasSubmittedScore(true);
         setLeaderboardStatus("Saving score...");
-        void saveScore(completionTime, mistakesMade);
+        void saveScore(completionTime, errors);
       }
 
       return;
     }
 
-    const nextMistakes = Math.max(0, mistakesRemaining - 1);
-    setMistakesRemaining(nextMistakes);
+    const nextErrors = errors + 1;
+    setErrors(nextErrors);
     setIsShaking(true);
-    setMessage(nextMistakes === 0 ? "No mistakes remaining." : "Not quite. Try another group.");
+    setMessage("Not quite. Try another group.");
     window.setTimeout(() => setIsShaking(false), 520);
   }
 
@@ -305,7 +303,7 @@ export function AmaraConnectionsGame() {
             Time: <span className="font-medium text-ink">{formatTime(elapsedMs)}</span>
           </span>
           <span className="rounded-full border border-ink/12 bg-paper px-4 py-2">
-            Errors: <span className="font-medium text-ink">{mistakesMade}</span>
+            Errors: <span className="font-medium text-ink">{errors}</span>
           </span>
         </div>
 
@@ -329,7 +327,7 @@ export function AmaraConnectionsGame() {
                   key={card.id}
                   type="button"
                   onClick={() => toggleCard(card.id)}
-                  disabled={isComplete || isGameOver || isShaking}
+                  disabled={isComplete || isShaking}
                   className={
                     isSelected
                       ? "flex aspect-[1.75] items-center justify-center rounded-lg bg-[#5f6156] px-2 text-center text-sm font-black uppercase leading-none text-paper transition sm:text-xl md:text-2xl"
@@ -346,19 +344,12 @@ export function AmaraConnectionsGame() {
         <p className="mt-6 min-h-6 text-sm text-ink/62">{message}</p>
 
         <div className="mt-4 flex items-center justify-center gap-3 text-xl text-[#55564d]">
-          <span>Mistakes Remaining:</span>
-          <span className="flex gap-3" aria-label={`${mistakesRemaining} mistakes remaining`}>
-            {Array.from({ length: 4 }).map((_, index) => (
-              <span
-                key={index}
-                className={
-                  index < mistakesRemaining
-                    ? "h-7 w-7 rounded-full bg-[#55564d]"
-                    : "h-7 w-7 rounded-full border border-[#55564d]/35"
-                }
-                aria-hidden
-              />
-            ))}
+          <span>Errors:</span>
+          <span
+            className="inline-flex h-10 min-w-10 items-center justify-center rounded-full bg-[#55564d] px-3 font-semibold text-paper"
+            aria-label={`${errors} errors`}
+          >
+            {errors}
           </span>
         </div>
 
@@ -366,7 +357,7 @@ export function AmaraConnectionsGame() {
           <button
             type="button"
             onClick={shuffle}
-            disabled={isComplete || isGameOver || isShaking}
+            disabled={isComplete || isShaking}
             className="h-14 rounded-full border-2 border-ink bg-paper px-8 text-xl font-semibold text-ink transition hover:bg-ink hover:text-paper disabled:cursor-not-allowed disabled:border-ink/20 disabled:text-ink/35 disabled:hover:bg-paper"
           >
             Shuffle
@@ -377,7 +368,7 @@ export function AmaraConnectionsGame() {
               setSelectedIds([]);
               setMessage("Selection cleared.");
             }}
-            disabled={selectedIds.length === 0 || isComplete || isGameOver || isShaking}
+            disabled={selectedIds.length === 0 || isComplete || isShaking}
             className="h-14 rounded-full border-2 border-ink/35 bg-paper px-8 text-xl font-semibold text-ink/55 transition hover:border-ink hover:text-ink disabled:cursor-not-allowed disabled:border-ink/20 disabled:text-ink/30"
           >
             Deselect All
@@ -385,7 +376,7 @@ export function AmaraConnectionsGame() {
           <button
             type="button"
             onClick={submitGuess}
-            disabled={selectedIds.length !== 4 || isComplete || isGameOver || isShaking}
+            disabled={selectedIds.length !== 4 || isComplete || isShaking}
             className="h-14 rounded-full border-2 border-ink/35 bg-paper px-8 text-xl font-semibold text-ink/55 transition hover:border-ink hover:text-ink disabled:cursor-not-allowed disabled:border-ink/20 disabled:text-ink/30"
           >
             Submit
@@ -394,12 +385,8 @@ export function AmaraConnectionsGame() {
 
         {isComplete ? (
           <p className="mt-7 font-serif text-3xl text-moss">
-            You solved it in {formatTime(elapsedMs)} with {mistakesMade}{" "}
-            {mistakesMade === 1 ? "error" : "errors"}!
+            You solved it in {formatTime(elapsedMs)} with {errors} {errors === 1 ? "error" : "errors"}!
           </p>
-        ) : null}
-        {isGameOver ? (
-          <p className="mt-7 font-serif text-3xl text-[#9f4f45]">Game over. Ask Akshay for a hint.</p>
         ) : null}
 
         {isComplete ? (
