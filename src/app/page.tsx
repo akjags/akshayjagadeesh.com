@@ -13,9 +13,10 @@ import { publications, posts } from "@/lib/content";
 const selectedWork = [
   {
     icon: ShieldCheck,
-    title: "Beneficial RL",
-    body: "Training models for broadly useful behavior that persists under pressure.",
+    title: "AI Alignment",
+    body: "Training models for broadly beneficial, value-aligned behavior that persists under pressure.",
     meta: "OpenAI",
+    href: "https://alignment.openai.com/beneficial-rl/",
   },
   {
     icon: HeartPulse,
@@ -77,14 +78,30 @@ export default function Home() {
           </Link>
         </div>
         <div className="grid gap-6 md:grid-cols-4">
-          {selectedWork.map((item) => (
-            <article key={item.title} className="min-h-[138px]">
-              <item.icon className="mb-4 text-moss" size={28} strokeWidth={1.6} aria-hidden />
-              <h3 className="text-base font-medium text-ink">{item.title}</h3>
-              <p className="mt-2 text-sm leading-5 text-ink/78">{item.body}</p>
-              <p className="mt-4 text-sm text-ink/56">{item.meta}</p>
-            </article>
-          ))}
+          {selectedWork.map((item) => {
+            const card = (
+              <>
+                <item.icon className="mb-4 text-moss" size={28} strokeWidth={1.6} aria-hidden />
+                <h3 className="text-base font-medium text-ink">{item.title}</h3>
+                <p className="mt-2 text-sm leading-5 text-ink/78">{item.body}</p>
+                <p className="mt-4 text-sm text-ink/56">{item.meta}</p>
+              </>
+            );
+
+            return item.href ? (
+              <a
+                key={item.title}
+                href={item.href}
+                className="group min-h-[138px] transition-colors hover:text-blue"
+              >
+                {card}
+              </a>
+            ) : (
+              <article key={item.title} className="min-h-[138px]">
+                {card}
+              </article>
+            );
+          })}
         </div>
       </section>
 
