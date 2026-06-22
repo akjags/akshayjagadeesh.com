@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import type { FormEvent } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 type ConnectionGroup = {
   id: string;
@@ -13,6 +14,14 @@ type ConnectionCard = {
   id: string;
   word: string;
   groupId: string;
+};
+
+type LeaderboardEntry = {
+  id: string;
+  name: string;
+  mistakes: number;
+  durationMs: number;
+  submittedAt: string;
 };
 
 const groups: ConnectionGroup[] = [
@@ -61,6 +70,9 @@ const startingOrder = [
   "STRAWBERRY",
 ];
 
+const leaderboardEndpoint = "/api/amara-connections-leaderboard";
+const localLeaderboardKey = "amara-connections-leaderboard";
+
 function buildCards() {
   const cards = groups.flatMap((group) =>
     group.words.map((word) => ({
@@ -86,14 +98,47 @@ function shuffleCards(cards: ConnectionCard[]) {
   return next;
 }
 
+function sortLeaderboard(entries: LeaderboardEntry[]) {
+  return [...entries].sort((a, b) => a.mistakes - b.mistakes || a.durationMs - b.durationMs);
+}
+
+function formatTime(durationMs: number) {
+  const totalSeconds = Math.max(0, Math.floor(durationMs / 1000));
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  return `${minutes}:${String(seconds).padStart(2, "0")}`;
+}
+
+function readLocalLeaderboard() {
+  try {
+    const stored = window.localStorage.getItem(localLeaderboardKey);
+    if (!stored) return [];
+    const parsed = JSON.parse(stored) as LeaderboardEntry[];
+    return Array.isArray(parsed) ? sortLeaderboard(parsed) : [];
+  } catch {
+    return [];
+  }
+}
+
+function writeLocalLeaderboard(entries: LeaderboardEntry[]) {
+  window.localStorage.setItem(localLeaderboardKey, JSON.stringify(sortLeaderboard(entries).slice(0, 100)));
+}
+
 export function AmaraConnectionsGame() {
   const initialCards = useMemo(() => buildCards(), []);
   const [cards, setCards] = useState(initialCards);
+  const [nameInput, setNameInput] = useState("");
+  const [playerName, setPlayerName] = useState("");
+  const [startedAt, setStartedAt] = useState<number | null>(null);
+  const [elapsedMs, setElapsedMs] = useState(0);
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [solvedGroupIds, setSolvedGroupIds] = useState<string[]>([]);
   const [mistakesRemaining, setMistakesRemaining] = useState(4);
   const [isShaking, setIsShaking] = useState(false);
   const [message, setMessage] = useState("Select four cards and submit your guess.");
+  const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
+  const [leaderboardStatus, setLeaderboardStatus] = useState("Leaderboard will appear after you solve it.");
+  const [hasSubmittedScore, setHasSubmittedScore] = useState(false);
 
   const solvedGroups = solvedGroupIds
     .map((groupId) => groups.find((group) => group.id === groupId))
@@ -101,6 +146,59 @@ export function AmaraConnectionsGame() {
   const unsolvedCards = cards.filter((card) => !solvedGroupIds.includes(card.groupId));
   const isComplete = solvedGroupIds.length === groups.length;
   const isGameOver = mistakesRemaining === 0 && !isComplete;
+  const mistakesMade = 4 - mistakesRemaining;
+
+  useEffect(() => {
+    if (!startedAt || isComplete || isGameOver) return;
+
+    const timer = window.setInterval(() => {
+      setElapsedMs(Date.now() - startedAt);
+    }, 250);
+
+    return () => window.clearInterval(timer);
+  }, [isComplete, isGameOver, startedAt]);
+
+  function startGame(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const trimmedName = nameInput.trim();
+    if (!trimmedName) return;
+
+    setPlayerName(trimmedName.slice(0, 40));
+    setStartedAt(Date.now());
+    setElapsedMs(0);
+  }
+
+  async function saveScore(completionTime: number, finalMistakesMade: number) {
+    const entry: LeaderboardEntry = {
+      id: `${Date.now()}-${Math.random().toString(36).slice(2)}`,
+      name: playerName,
+      mistakes: finalMistakesMade,
+      durationMs: completionTime,
+      submittedAt: new Date().toISOString(),
+    };
+
+    try {
+      const response = await fetch(leaderboardEndpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(entry),
+      });
+
+      if (response.ok) {
+        const payload = (await response.json()) as { entries?: LeaderboardEntry[] };
+        setLeaderboard(sortLeaderboard(payload.entries ?? [entry]));
+        setLeaderboardStatus("Leaderboard");
+        return;
+      }
+    } catch {
+      // Fall back to local storage below.
+    }
+
+    const localEntries = sortLeaderboard([...readLocalLeaderboard(), entry]).slice(0, 100);
+    writeLocalLeaderboard(localEntries);
+    setLeaderboard(localEntries);
+    setLeaderboardStatus("Leaderboard for this browser");
+  }
 
   function toggleCard(cardId: string) {
     if (isComplete || isGameOver || isShaking) return;
@@ -132,9 +230,19 @@ export function AmaraConnectionsGame() {
 
     if (isCorrect && groupId) {
       const group = groups.find((item) => item.id === groupId);
-      setSolvedGroupIds((current) => [...current, groupId]);
+      const nextSolvedGroupIds = [...solvedGroupIds, groupId];
+      setSolvedGroupIds(nextSolvedGroupIds);
       setSelectedIds([]);
       setMessage(group ? `Nice! ${group.title}.` : "Correct!");
+
+      if (startedAt && !hasSubmittedScore && nextSolvedGroupIds.length === groups.length) {
+        const completionTime = Date.now() - startedAt;
+        setElapsedMs(completionTime);
+        setHasSubmittedScore(true);
+        setLeaderboardStatus("Saving score...");
+        void saveScore(completionTime, mistakesMade);
+      }
+
       return;
     }
 
@@ -145,6 +253,43 @@ export function AmaraConnectionsGame() {
     window.setTimeout(() => setIsShaking(false), 520);
   }
 
+  if (!startedAt) {
+    return (
+      <main className="noise px-4 py-8 sm:px-6 lg:px-8">
+        <section className="mx-auto max-w-xl text-center">
+          <p className="text-xs uppercase tracking-[0.18em] text-moss">
+            Amara&apos;s first birthday
+          </p>
+          <h1 className="mt-4 text-4xl font-semibold leading-tight text-ink sm:text-5xl">
+            Amara Connections
+          </h1>
+          <p className="mt-4 text-lg leading-8 text-ink/72">
+            Enter your name to start the timer and play.
+          </p>
+          <form onSubmit={startGame} className="mt-8 rounded-lg border border-ink/12 bg-paper p-5 shadow-soft">
+            <label className="block text-left">
+              <span className="text-sm font-medium text-ink/72">Name</span>
+              <input
+                value={nameInput}
+                onChange={(event) => setNameInput(event.target.value)}
+                className="mt-2 h-12 w-full rounded-md border border-ink/16 bg-paper px-4 text-base text-ink outline-none transition placeholder:text-ink/40 focus:border-moss focus:ring-4 focus:ring-moss/10"
+                placeholder="Your name"
+                autoFocus
+              />
+            </label>
+            <button
+              type="submit"
+              disabled={!nameInput.trim()}
+              className="mt-5 h-12 w-full rounded-md bg-moss px-4 text-base font-medium text-paper transition hover:bg-moss/90 disabled:cursor-not-allowed disabled:bg-moss/35"
+            >
+              Start
+            </button>
+          </form>
+        </section>
+      </main>
+    );
+  }
+
   return (
     <main className="noise px-4 py-8 sm:px-6 lg:px-8">
       <section className="mx-auto max-w-5xl text-center">
@@ -152,6 +297,17 @@ export function AmaraConnectionsGame() {
         <h1 className="mt-4 text-4xl font-semibold leading-tight text-ink sm:text-5xl">
           Create four groups of four!
         </h1>
+        <div className="mt-5 flex flex-wrap items-center justify-center gap-3 text-sm text-ink/62">
+          <span className="rounded-full border border-ink/12 bg-paper px-4 py-2">
+            Player: <span className="font-medium text-ink">{playerName}</span>
+          </span>
+          <span className="rounded-full border border-ink/12 bg-paper px-4 py-2">
+            Time: <span className="font-medium text-ink">{formatTime(elapsedMs)}</span>
+          </span>
+          <span className="rounded-full border border-ink/12 bg-paper px-4 py-2">
+            Errors: <span className="font-medium text-ink">{mistakesMade}</span>
+          </span>
+        </div>
 
         <div className="mt-8 grid gap-3">
           {solvedGroups.map((group) => (
@@ -237,10 +393,41 @@ export function AmaraConnectionsGame() {
         </div>
 
         {isComplete ? (
-          <p className="mt-7 font-serif text-3xl text-moss">You solved it!</p>
+          <p className="mt-7 font-serif text-3xl text-moss">
+            You solved it in {formatTime(elapsedMs)} with {mistakesMade}{" "}
+            {mistakesMade === 1 ? "error" : "errors"}!
+          </p>
         ) : null}
         {isGameOver ? (
           <p className="mt-7 font-serif text-3xl text-[#9f4f45]">Game over. Ask Akshay for a hint.</p>
+        ) : null}
+
+        {isComplete ? (
+          <section className="mt-8 rounded-lg border border-ink/12 bg-paper p-5 text-left shadow-soft">
+            <h2 className="font-serif text-3xl text-ink">{leaderboardStatus}</h2>
+            <div className="mt-4 overflow-x-auto">
+              <table className="w-full border-collapse text-sm">
+                <thead>
+                  <tr className="border-b border-ink/12 text-left text-xs uppercase tracking-[0.14em] text-ink/50">
+                    <th className="py-3 pr-3">Rank</th>
+                    <th className="py-3 pr-3">Name</th>
+                    <th className="py-3 pr-3">Errors</th>
+                    <th className="py-3 pr-3">Time</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {leaderboard.map((entry, index) => (
+                    <tr key={entry.id} className="border-b border-ink/8 last:border-0">
+                      <td className="py-3 pr-3 text-ink/52">{index + 1}</td>
+                      <td className="py-3 pr-3 font-medium text-ink">{entry.name}</td>
+                      <td className="py-3 pr-3 text-ink/72">{entry.mistakes}</td>
+                      <td className="py-3 pr-3 text-ink/72">{formatTime(entry.durationMs)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
         ) : null}
       </section>
     </main>

@@ -24,7 +24,7 @@ Recipes support image URLs through the `image` field. Public pages are linked in
 
 ## Private Pages
 
-Recipes and event pages use a simple shared passcode. The default is:
+Recipes and event pages use a simple passcode. The default is:
 
 ```text
 garden
@@ -37,3 +37,12 @@ SITE_PASSCODE=your-passcode
 ```
 
 Private routes are also excluded from `robots.txt` and the sitemap, but the passcode is the actual lightweight gate.
+
+The Amara Connections leaderboard stores shared scores through Redis-compatible REST env vars:
+
+```bash
+KV_REST_API_URL=...
+KV_REST_API_TOKEN=...
+```
+
+`UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` are also supported. Without those env vars, the game falls back to a same-browser local leaderboard.
