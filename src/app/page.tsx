@@ -51,7 +51,7 @@ export default function Home() {
           width={720}
           height={720}
           priority
-          className="aspect-square w-full max-w-[280px] border border-ink/8 object-cover md:max-w-none"
+          className="aspect-square w-full max-w-[280px] object-contain md:max-w-none"
         />
         <div className="flex max-w-3xl flex-col justify-center">
           <h1 className="font-serif text-5xl leading-[1.02] text-ink md:text-6xl">

@@ -16,7 +16,7 @@ export default function AboutPage() {
             alt="Akshay Jagadeesh"
             width={2000}
             height={2000}
-            className="rounded-lg border border-ink/10 object-cover shadow-soft"
+            className="object-contain"
           />
         </div>
         <div>
