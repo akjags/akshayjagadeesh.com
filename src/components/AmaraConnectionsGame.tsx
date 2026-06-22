@@ -52,22 +52,22 @@ const groups: ConnectionGroup[] = [
 ];
 
 const startingOrder = [
-  "BLUEBERRY",
   "DOG",
-  "DRINKING",
-  "PEAR",
+  "BLUEBERRY",
   "POOL",
-  "KIWI",
-  "CHICKEN",
   "PRUNE",
-  "TURTLE",
   "OCEAN",
-  "RASPBERRY",
-  "WALKER",
-  "TUMMY TIME",
   "RABBIT",
-  "BATH",
+  "KIWI",
+  "WALKER",
+  "PEAR",
+  "DRINKING",
+  "TURTLE",
+  "RASPBERRY",
+  "CHICKEN",
   "STRAWBERRY",
+  "BATH",
+  "TUMMY TIME",
 ];
 
 const leaderboardEndpoint = "/api/amara-connections-leaderboard";
